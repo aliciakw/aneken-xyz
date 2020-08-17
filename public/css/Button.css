@@ -1,0 +1,25 @@
+.Button--primary {
+  text-decoration: none;
+  color: #aaa;
+  background: none;
+  border: none;
+  box-shadow: none;
+  font-weight: normal;
+}
+.Button--primary:hover, .Button--primary:focus, .Button--primary:active {
+  color: #222;
+  cursor: pointer;
+}
+
+.Button--primary:before {
+  content: "[";
+  position: relative;
+  left: -7px;
+  color: #aaa;
+}
+.Button--primary:after {
+  content: "]";
+  position: relative;
+  left: 7px;
+  color: #aaa;
+}

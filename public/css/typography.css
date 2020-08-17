@@ -1,0 +1,55 @@
+a {
+  text-decoration: none;
+  color: #6d9cd0;
+  font-weight: bold;
+  border: none;
+  box-shadow: none;
+}
+a:hover, a:focus, a:active {
+  color: #222;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 2rem;
+}
+.heading {
+  font-size: 1.25rem;
+}
+.subheading {
+  font-size: 1.5rem;
+}
+.copy {
+  font-size: 1rem;
+}
+.detail {
+  font-size: .85rem;
+}
+
+@media screen and (min-width: 450px) {
+  .title {
+    font-size: 2.25rem;
+  }
+  .heading {
+    font-size: 1.75rem;
+  }
+  .subheading {
+    font-size: 1.5rem;
+  }
+  .copy {
+    font-size: 1rem;
+  }
+  .detail {
+    font-size: .85rem;
+  }
+}
+
+.handwriting {
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.amatic-sc {
+  font-family: 'Amatic SC', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  letter-spacing: 0.3em;
+}
+
