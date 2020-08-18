@@ -2,11 +2,13 @@
   <div class="PageContainer flex flex-col align-center" v-if="blocks">
     <div class="PageContainer__wrapper" v-for="block in blocks" v-bind:key="block.id">
       <ImageBlock v-if="block.type === 'imageblock'" v-bind:data="block.data" />
+      <VideoBlock v-if="block.type === 'video_block'" v-bind:data="block.data" />
     </div>
   </div>  
 </template>
 <script>
 import ImageBlock from '../components/ImageBlock';
+import VideoBlock from '../components/VideoBlock';
 const graphQuery = `{
   page {
     title
@@ -16,6 +18,9 @@ const graphQuery = `{
           title
           image
         }
+        ...on video_block {
+          video_url
+        }
       }
     }
   }
@@ -24,6 +29,7 @@ export default {
   name: 'PageContainer',
   components: {
     ImageBlock,
+    VideoBlock,
   },
   props: {
     slug: String,
