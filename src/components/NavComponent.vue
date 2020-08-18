@@ -2,7 +2,6 @@
   <div class="NavComponent flex flex-col w100 h100 bg-burnt-orange-light">
     <!-- nav header -->
     <div class="NavComponent__header flex flex-row justify-center align-center">
-      <h1 v-if="$mq == 'mobile' || $mq === 'phablet'">Aneken River</h1>
       <button
         class="NavComponent__nav-toggle color-burnt-orange-dark" 
         v-on:click="toggleNav">

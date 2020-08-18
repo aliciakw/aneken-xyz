@@ -49,6 +49,9 @@ export default {
         '--main-col-width': this.showNav ? 'calc(100vw + 400px)' : '100wv',
         '--main-col-offset': this.showNav ? '-400px' : '0',
         '--sidebar-width': this.showNav ? '400px' : '0',
+        '--mobile-main-col-width': this.showNav ? '200vw' : '100wv',
+        '--mobile-main-col-offset': this.showNav ? '-400px' : '0',
+        '--mobile-sidebar-width': this.showNav ? '100vw' : '0',
       }
     }
   },
@@ -85,9 +88,9 @@ body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .App {
-  width: var(--main-col-width);
+  width: var(--mobile-main-col-width);
   position: absolute;
-  left: var(--main-col-offset);
+  left: var(--mobile-main-col-offset);
   overflow: hidden;
   transition: width 0.1s ease-in-out, left 0.1s ease-in-out;
 }
@@ -95,8 +98,18 @@ body {
   position: fixed;
   top: 0;
   right: 0;
-  width: var(--sidebar-width);
+  width: var(--mobile-sidebar-width);
   transition: width 0.1s ease-in-out;
   overflow: hidden;
 }
+@media screen and (min-width: 550px) {
+  .App {
+    width: var(--main-col-width);
+    left: var(--main-col-offset);
+  }
+  .App__sidebar {
+    width: var(--sidebar-width);
+  }
+}
+
 </style>
