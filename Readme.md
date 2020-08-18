@@ -1,4 +1,4 @@
-# anekenriver.xyz
+# aneken.xyz
 ## Project setup
 ```
 npm install
