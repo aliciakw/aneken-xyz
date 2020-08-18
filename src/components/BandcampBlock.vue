@@ -8,18 +8,20 @@
     <div class="flex flex-col border-black">
       <iframe
         class="BandcampBlock__player" 
-        src="https://bandcamp.com/EmbeddedPlayer/album=472367667/size=large/bgcol=ffffff/linkcol=e99708/artwork=none/transparent=true/"
+        v-bind:src="bandcampPlayerSrc"
         seamless
       >
-        <a href="http://singlesweekend.bandcamp.com/album/singles-weekend-vol-ii">
-          Singles Weekend Vol. II by Singles Weekend
-        </a>
+        <a v-bind:href="data.album_url">{{ data.title }}</a>
       </iframe>
     </div>
   </div>
 </template>
 <script>
 import ImageLoader from '../containers/ImageLoader';
+import stripHash from '../utils/stripHash';
+const PLAYER_BG_LIGHT = 'ffffff';
+const PLAYER_BG_DARK = '333333';
+const DEFAULT_PLAYER_LINK_COLOR = 'be612e'; // burnt orange
 export default {
   name: 'BandcampBlock',
   components: {
@@ -27,7 +29,23 @@ export default {
   },
   props: {
     data: {
-      video_url: String
+      album_art: {
+        alt: String,
+        url: String,
+      },
+      bandcamp_album_id: String,
+      dark_mode: Boolean,
+      link_color: String,
+      message: Object,
+      title: String,
+    }
+  },
+  computed: {
+    bandcampPlayerSrc: function() {
+      const albumId = this.data.bandcamp_album_id;
+      const bgColor = this.data.dark_mode ? PLAYER_BG_DARK : PLAYER_BG_LIGHT;
+      const linkColor = this.data.link_color ? stripHash(this.data.link_color) : DEFAULT_PLAYER_LINK_COLOR;
+      return `https://bandcamp.com/EmbeddedPlayer/album=${albumId}/size=large/bgcol=${bgColor}/linkcol=${linkColor}/artwork=none/transparent=true/`;
     }
   }
 }

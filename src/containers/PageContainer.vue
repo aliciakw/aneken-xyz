@@ -19,16 +19,19 @@ const graphQuery = `{
         ...on imageblock {
           title
           image
+          caption
         }
         ...on video_block {
           video_url
         }
         ... on bandcamp_block {
-          title
+          album_art
+          album_url
           bandcamp_album_id
           link_color
-          background_color
-          album_art
+          dark_mode
+          message
+          title
         }
       }
     }
