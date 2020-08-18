@@ -32,3 +32,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### References
+* [Prismic JS Client Documentation](https://github.com/prismicio/prismic-javascript#readme)
+* [Prismic API GraphQuery Documentation](https://prismic.io/docs/rest-api/query-the-api/graphquery)
