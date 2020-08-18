@@ -1,7 +1,11 @@
 <template>
   <div class="flex flex-col align-center p1">
     <ImageLoader v-bind:src="data.image.url" v-bind:alt="data.image.alt" />
-    <div v-if="serializedCaption" v-html="serializedCaption" class="my2" />
+    <div
+      v-if="serializedCaption"
+      v-html="serializedCaption"
+      class="ImageBlock__caption w100 mt1 mb2 text-right amatic-sc"
+    />
   </div>
 </template>
 <script>
@@ -37,3 +41,22 @@ export default {
   }
 }
 </script>
+<style>
+.ImageBlock__caption h4 {
+  font-size: 1.5rem;
+}
+@media screen and (min-width: 500px) {
+  .ImageBlock__caption h4 {
+    font-size: 2rem;
+  }
+  .ImageBlock__caption h5 {
+    font-size: 1.5rem;
+  }
+  .ImageBlock__caption h6 {
+    font-size: 1.25rem;
+  }
+  .ImageBlock__caption p {
+    font-size: 1rem;
+  }
+}
+</style>
