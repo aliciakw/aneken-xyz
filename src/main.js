@@ -16,8 +16,9 @@ Vue.use(PrismicVue, {
 
 Vue.use(VueMq, {
   breakpoints: {
-    mobile: 450,
-    tablet: 900,
+    mobile: 365,
+    phablet: 550,
+    tablet: 770,
     laptop: 1250,
     desktop: Infinity,
   }
