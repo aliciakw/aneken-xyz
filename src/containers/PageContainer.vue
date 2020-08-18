@@ -1,12 +1,14 @@
 <template>
   <div class="PageContainer flex flex-col align-center" v-if="blocks">
     <div class="PageContainer__wrapper" v-for="block in blocks" v-bind:key="block.id">
+      <BandcampBlock v-if="block.type === 'bandcamp_block'" v-bind:data="block.data" />
       <ImageBlock v-if="block.type === 'imageblock'" v-bind:data="block.data" />
       <VideoBlock v-if="block.type === 'video_block'" v-bind:data="block.data" />
     </div>
   </div>  
 </template>
 <script>
+import BandcampBlock from '../components/BandcampBlock';
 import ImageBlock from '../components/ImageBlock';
 import VideoBlock from '../components/VideoBlock';
 const graphQuery = `{
@@ -21,6 +23,13 @@ const graphQuery = `{
         ...on video_block {
           video_url
         }
+        ... on bandcamp_block {
+          title
+          bandcamp_album_id
+          link_color
+          background_color
+          album_art
+        }
       }
     }
   }
@@ -28,6 +37,7 @@ const graphQuery = `{
 export default {
   name: 'PageContainer',
   components: {
+    BandcampBlock,
     ImageBlock,
     VideoBlock,
   },
@@ -68,8 +78,8 @@ export default {
 <style>
 @media screen and (min-width: 550px) {
   .PageContainer__wrapper {
+    width: 100%;
     max-width: 900px;
   }
 }
-
 </style>
