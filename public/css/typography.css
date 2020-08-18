@@ -26,7 +26,7 @@ a:hover, a:focus, a:active {
   font-size: .85rem;
 }
 
-@media screen and (min-width: 450px) {
+@media screen and (min-width: 500px) {
   .title {
     font-size: 2.25rem;
   }

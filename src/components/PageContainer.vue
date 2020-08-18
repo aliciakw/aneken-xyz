@@ -1,7 +1,7 @@
 <template>
-  <div v-if="blocks">
-    <div v-for="block in blocks" v-bind:key="block.id">
-      <ImageBlock v-if="block.type === 'imageblock'" />
+  <div class="PageContainer flex flex-col align-center" v-if="blocks">
+    <div class="PageContainer__wrapper" v-for="block in blocks" v-bind:key="block.id">
+      <ImageBlock v-if="block.type === 'imageblock'" v-bind:data="block.data" />
     </div>
   </div>
   <p v-else class="heading amatic-sc text-center">PageContainer :: {{ slug }}</p>
@@ -41,12 +41,14 @@ export default {
     loadBlocks: function() {
       this.$prismic.client.getByUID('page', this.slug, { 'graphQuery': graphQuery })
         .then((document) => {
-          console.log(document.data);
           if (document && document.data && Array.isArray(document.data.block_links)) {
             const blocks = document.data.block_links.reduce((acc, blockFields) => {
               if (blockFields.block.type && !blockFields.block.isBroken) {
-                console.log('>', blockFields.block.data)
-                acc.push(blockFields.block);
+                acc.push({
+                  id: blockFields.block.id,
+                  type: blockFields.block.type,
+                  data: blockFields.block.data,
+                });
               }
               return acc;
             }, []);
@@ -57,3 +59,15 @@ export default {
   }
 }
 </script>
+
+<style>
+@media screen and (min-width: 550px) {
+  .PageContainer {
+    padding: 0 2rem;
+  }
+  .PageContainer__wrapper {
+    max-width: 900px;
+  }
+}
+
+</style>

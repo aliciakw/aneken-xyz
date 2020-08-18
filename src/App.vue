@@ -4,7 +4,6 @@
       Aneken River
     </h1>
     <PageContainer slug="home" />
-    <p class="mt2 text-center">Thanks for visiting!</p>
   </div>
 </template>
 

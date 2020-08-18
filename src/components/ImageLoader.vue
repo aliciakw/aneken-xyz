@@ -1,12 +1,12 @@
 <template>
-  <img v-bind:class="className" v-bind:src="src" v-bind:alt="alt" />
+  <img class="w100" v-bind:class="className" v-bind:src="src" v-bind:alt="alt" />
 </template>
 
 <script>
 export default {
   name: 'ImageLoader',
   props: {
-      src: String,
+    src: String,
     alt: String,
   },
   data() {
