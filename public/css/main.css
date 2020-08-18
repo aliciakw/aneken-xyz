@@ -12,7 +12,9 @@
 .flex-row { flex-direction: row; }
 .flex-col { flex-direction: column; }
 .flex-col-reverse { flex-direction: column-reverse; }
+.justify-start { justify-content: flex-start; }
 .justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
 .justify-between { justify-content: space-between; }
 .align-start { align-items: flex-start; }
 .align-center { align-items: center; }
@@ -74,6 +76,19 @@
   padding-bottom: 4rem;
 }
 
+.m_25 { margin: 0.225rem; }
+.mr_25 { margin-right: 0.225rem; }
+.ml_25 { margin-left: 0.225rem; }
+.mt_25 { margin-top: 0.225rem; }
+.mb_25 { margin-bottom: 0.225rem; }
+.mx_25 {
+  margin-left: 0.225rem;
+  margin-right: 0.225rem;
+}
+.my_25 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
 .m_5 { margin: 0.5rem; }
 .mr_5 { margin-right: 0.5rem; }
 .ml_5 { margin-left: 0.5rem; }
@@ -84,8 +99,8 @@
   margin-right: 0.5rem;
 }
 .my_5 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .m1 { margin: 1rem; }
 .mr1 { margin-right: 1rem; }
@@ -115,19 +130,42 @@
 }
 
 /* Colors */
+.color-black { color: #131921; }
 .color-gray { color: #aaa; }
 .color-shark-blue { color: #6d9cd0; }
 .color-ice-blue { color: #bcd1e7; }
 .color-electric-blue { color: #2F98D3; }
 .color-teal { color: #3ad0ea; }
+.color-burnt-orange-light { color: #FBCFB6; }
+.color-burnt-orange { color: #f5ab82; }
+.color-burnt-orange-dark { color: #be612e; }
 
 .bg-black { background : #131921; }
 .bg-white { background: #fff; }
+.bg-burnt-orange-light { background: #FBCFB6; }
+.bg-burnt-orange { background: #f5ab82; }
+.bg-burnt-orange-dark { background: #be612e; }
+.bg-shark-blue { background: #6d9cd0; }
+
+.border-black { border: 1px solid #131921; }
 
 /* Resets */
-
+body {
+  margin: 0;
+}
 p, img, div, ul, h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
   font-weight: normal;
 }
+
+
+/* Assumed Breakpoints
+$breakpoints: (
+  'xs': 365px, // iphone SE (320px) and down
+  'sm': 500px, // iphone X (375px) and phablets
+  'md': 770px, // ipad and smaller browser window
+  'lg': 1024px, // laptop
+  'xl': 1450px // large desktop
+) !default;
+*/
