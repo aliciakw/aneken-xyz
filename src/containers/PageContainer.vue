@@ -3,11 +3,10 @@
     <div class="PageContainer__wrapper" v-for="block in blocks" v-bind:key="block.id">
       <ImageBlock v-if="block.type === 'imageblock'" v-bind:data="block.data" />
     </div>
-  </div>
-  <p v-else class="heading amatic-sc text-center">PageContainer :: {{ slug }}</p>
+  </div>  
 </template>
 <script>
-import ImageBlock from './ImageBlock';
+import ImageBlock from '../components/ImageBlock';
 const graphQuery = `{
   page {
     title
@@ -24,7 +23,7 @@ const graphQuery = `{
 export default {
   name: 'PageContainer',
   components: {
-    ImageBlock
+    ImageBlock,
   },
   props: {
     slug: String,
@@ -62,9 +61,6 @@ export default {
 
 <style>
 @media screen and (min-width: 550px) {
-  .PageContainer {
-    padding: 0 2rem;
-  }
   .PageContainer__wrapper {
     max-width: 900px;
   }
