@@ -1,16 +1,20 @@
 <template>
-  <div class="PageContainer flex flex-col align-center" v-if="blocks">
-    <div class="PageContainer__wrapper" v-for="block in blocks" v-bind:key="block.id">
-      <BandcampBlock v-if="block.type === 'bandcamp_block'" v-bind:data="block.data" />
-      <ImageBlock v-if="block.type === 'imageblock'" v-bind:data="block.data" />
-      <VideoBlock v-if="block.type === 'video_block'" v-bind:data="block.data" />
+  <div class="BlockSwitch flex flex-col align-center">
+    <div v-if="blocks">
+      <div class="BlockSwitch__wrapper" v-for="block in blocks" v-bind:key="block.id">
+        <BandcampBlock v-if="block.type === 'bandcamp_block'" v-bind:data="block.data" />
+        <ImageBlock v-if="block.type === 'imageblock'" v-bind:data="block.data" />
+        <VideoBlock v-if="block.type === 'video_block'" v-bind:data="block.data" />
+      </div>
     </div>
-  </div>  
+    <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
+  </div> 
 </template>
 <script>
 import BandcampBlock from '../components/BandcampBlock';
 import ImageBlock from '../components/ImageBlock';
 import VideoBlock from '../components/VideoBlock';
+import NotFoundComponent from '../components/NotFoundComponent';
 const graphQuery = `{
   page {
     title
@@ -38,14 +42,20 @@ const graphQuery = `{
   }
 }`;
 export default {
-  name: 'PageContainer',
+  name: 'BlockSwitch',
   components: {
     BandcampBlock,
     ImageBlock,
     VideoBlock,
+    NotFoundComponent,
   },
   props: {
     slug: String,
+    notFoundMessage: String,
+    notFoundImage: {
+      alt: String,
+      url: String,
+    }
   },
   data() {
     return {
@@ -79,8 +89,14 @@ export default {
 </script>
 
 <style>
+.BlockSwitch__wrapper {
+  min-height: calc(100vh - 140px);
+}
+.NotFound {
+  min-height: calc(100vh - 140px);
+}
 @media screen and (min-width: 550px) {
-  .PageContainer__wrapper {
+  .BlockSwitch__wrapper {
     width: 100%;
     max-width: 900px;
   }

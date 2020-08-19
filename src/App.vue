@@ -3,7 +3,11 @@
     <!-- main column -->
     <div class="App__main-column vw100">
       <HeaderComponent v-bind:toggleNav="toggleNav" />
-      <PageContainer slug="home" />
+      <BlockSwitch
+        v-bind:slug="pageSlug"
+        v-bind:notFoundMessage="notFoundMessage"
+        v-bind:notFoundImage="notFoundImage"
+      />
       <FooterComponent
         v-bind:bandcampUrl="bandcampUrl"
         v-bind:instagramUrl="instagramUrl"
@@ -21,14 +25,14 @@
 
 <script>
 import HeaderComponent from './components/HeaderComponent.vue';
-import PageContainer from './containers/PageContainer.vue';
+import BlockSwitch from './containers/BlockSwitch.vue';
 import FooterComponent from './components/FooterComponent.vue';
 import NavComponent from './components/NavComponent.vue';
 export default {
   name: 'app',
   components: {
     HeaderComponent,
-    PageContainer,
+    BlockSwitch,
     FooterComponent,
     NavComponent,
   },
@@ -41,9 +45,18 @@ export default {
       youtubeUrl: '',
       menuItems: [],
       showNav: false,
+      notFoundImage: null,
+      notFoundMessage: '',
     }
   },
   computed: {
+    pageSlug() {
+      const pathname = window.location.pathname;
+      if (pathname === '/') {
+        return 'home';
+      }
+      return pathname;
+    },
     cssVars() {
       return {
         '--main-col-width': this.showNav ? 'calc(100vw + 400px)' : '100wv',
@@ -74,6 +87,8 @@ export default {
             if (Array.isArray(document.data.menu_items)) {
               this.menuItems = document.data.menu_items;
             }
+            this.notFoundImage = document.data.not_found_image || null;
+            this.notFoundMessage = document.data.not_found_message || '';
           }
         });
     }

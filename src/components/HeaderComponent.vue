@@ -14,7 +14,7 @@
 export default {
   name: 'HeaderComponent',
   props: {
-    toggleNav: String,
+    toggleNav: Function,
   }
 }
 </script>
