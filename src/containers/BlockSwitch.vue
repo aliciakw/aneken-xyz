@@ -89,10 +89,7 @@ export default {
 </script>
 
 <style>
-.BlockSwitch__wrapper {
-  min-height: calc(100vh - 140px);
-}
-.NotFound {
+.BlockSwitch {
   min-height: calc(100vh - 140px);
 }
 @media screen and (min-width: 550px) {

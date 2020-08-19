@@ -4,10 +4,10 @@
       <div class="NotFound__image-wrapper">
         <ImageLoader v-if="image" v-bind:src="image.url" v-bind:alt="image.alt" />
       </div>
-      <h3 class="m1">{{ message }}</h3>
-      <a href="/" class="flex flex-row align-start justify-center handwriting mb4">
+      <h3 class="mt2 mb1 copy text-center">{{ message }}</h3>
+      <a href="/" class="flex flex-row align-start justify-end handwriting px2 mb4">
         <img class="NotFound__icon mr1 mt_5" src="img/back.svg"/>
-        <span>go back home</span>
+        <span class="mr1">go back home</span>
       </a>   
    
     </div>
@@ -34,7 +34,7 @@ export default {
 </script>
 <style >
 .NotFound__image-wrapper {
-  width: calc(100% - 4rem);
+  width: calc(100% - 2rem);
   margin: auto;
 }
 .NotFound__icon {
@@ -42,10 +42,10 @@ export default {
 }
 @media screen and (min-width: 550px) {
   .NotFound__wrapper {
-    width: 40%;
+    width: 33%;
   }
   .NotFound__image-wrapper {
-    width: 400px;
+    width: 50%;
   }
 }
 </style>
