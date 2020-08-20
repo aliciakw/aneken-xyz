@@ -1,11 +1,16 @@
 <template>
   <div class="BandcampBlock p1">
-    <!-- album art -->
-    <div class="BandcampBlock__album-art">
-      <ImageLoader v-bind:src="data.album_art.url" v-bind:alt="data.album_art.alt" />
-    </div>
-    <!-- player -->
+    <!-- left column -->
     <div class="flex flex-col border-black">
+      <div class="BandcampBlock__album-art mb1">
+        <ImageLoader v-bind:src="data.album_art.url" v-bind:alt="data.album_art.alt" />
+      </div>
+    </div>
+    <!-- right column -->
+    <div class="flex flex-col border-black">
+      <div v-if="data.message" class="mb1">
+        <AnnouncementBlock v-bind:message="data.message" v-bind:image="data.message_icon"/>
+      </div>
       <iframe
         class="BandcampBlock__player" 
         v-bind:src="bandcampPlayerSrc"
@@ -17,6 +22,7 @@
   </div>
 </template>
 <script>
+import AnnouncementBlock from '../components/AnnouncementBlock';
 import ImageLoader from '../containers/ImageLoader';
 import stripHash from '../utils/stripHash';
 const PLAYER_BG_LIGHT = 'ffffff';
@@ -25,7 +31,8 @@ const DEFAULT_PLAYER_LINK_COLOR = 'be612e'; // burnt orange
 export default {
   name: 'BandcampBlock',
   components: {
-    ImageLoader
+    AnnouncementBlock,
+    ImageLoader,
   },
   props: {
     data: {
@@ -56,9 +63,7 @@ export default {
   grid-template-columns: 100%;
   column-gap: 1rem;
 }
-.BandcampBlock__album-art {
-  margin-bottom: -3px;
-}
+
 .BandcampBlock__player {
   height: 300px;
 }

@@ -19,7 +19,8 @@ a:hover, a:focus, a:active {
   font-size: 1.5rem;
 }
 .copy {
-  font-size: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.35rem;
 }
 .detail {
   font-size: .85rem;
@@ -36,7 +37,8 @@ a:hover, a:focus, a:active {
     font-size: 1.5rem;
   }
   .copy {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.35rem;
   }
   .detail {
     font-size: .85rem;

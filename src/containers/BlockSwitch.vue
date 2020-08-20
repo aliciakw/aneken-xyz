@@ -32,9 +32,13 @@ const graphQuery = `{
           album_art
           album_url
           bandcamp_album_id
-          link_color
+          cta_label
+          cta_target_blank
+          cta_url
           dark_mode
+          link_color
           message
+          message_icon
           title
         }
       }
