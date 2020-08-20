@@ -5,6 +5,14 @@
       <div class="BandcampBlock__album-art mb1">
         <ImageLoader v-bind:src="data.album_art.url" v-bind:alt="data.album_art.alt" />
       </div>
+      <a
+        v-if="(data.cta_label || data.cta_url)"
+        class="Button--primary my1"
+        v-bind:href="data.cta_url"
+        v-bind:target="data.cta_target_blank ? '_blank' : ''"
+      >
+        {{ data.cta_label }}
+      </a>
     </div>
     <!-- right column -->
     <div class="flex flex-col border-black">
@@ -41,6 +49,9 @@ export default {
         url: String,
       },
       bandcamp_album_id: String,
+      cta_label: String,
+      cta_target_blank: String,
+      cta_url: String,
       dark_mode: Boolean,
       link_color: String,
       message: Object,
@@ -61,7 +72,7 @@ export default {
 .BandcampBlock {
   display: grid;
   grid-template-columns: 100%;
-  column-gap: 1rem;
+  column-gap: 2rem;
 }
 
 .BandcampBlock__player {
