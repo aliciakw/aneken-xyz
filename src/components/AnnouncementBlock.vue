@@ -56,7 +56,7 @@ export default {
   color: #be612e;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 770px) {
   .AnnouncementBlock {
     flex-direction: row;
     align-items: flex-start;

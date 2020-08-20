@@ -4,6 +4,7 @@
       <h1 class="title handwriting color-shark-blue">Aneken River</h1>
     </a>
     <button
+      v-if="!isShowingNav || $mq === 'tablet' || $mq === 'laptop' || $mq === 'desktop' "
       class="HeaderComponent__nav-toggle color-burnt-orange-dark" 
       v-on:click="toggleNav">
       <img src="img/menu.svg"/>
@@ -14,8 +15,9 @@
 export default {
   name: 'HeaderComponent',
   props: {
+    isShowingNav: Boolean,
     toggleNav: Function,
-  }
+  },
 }
 </script>
 <style>

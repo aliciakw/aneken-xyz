@@ -35,7 +35,7 @@ export default {
   width: 1.25rem;
   margin: 0.125rem;
 }
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 500px) {
   .Footer__wrapper {
     max-width: 900px;
   }

@@ -67,7 +67,7 @@ export default {
 .BandcampBlock__player {
   height: 300px;
 }
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 770px) {
   .BandcampBlock {
     grid-template-columns: 50% 50%;
   }

@@ -96,7 +96,7 @@ export default {
 .BlockSwitch {
   min-height: calc(100vh - 140px);
 }
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 500px) {
   .BlockSwitch__wrapper {
     width: 100%;
     max-width: 900px;
