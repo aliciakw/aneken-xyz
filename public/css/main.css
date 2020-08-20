@@ -7,6 +7,9 @@
 .position-relative { position: relative; }
 .position-fixed { position: fixed; }
 
+.overflow-hidden { overflow: hidden; }
+.circle { border-radius: 50%; }
+
 .flex { display: flex }
 .flex-1 { flex: 1; }
 .flex-none { flex: none; }
@@ -56,6 +59,19 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+.p1_5 { padding: 1.5rem; }
+.pr1_5 { padding-right: 1.5rem; }
+.pl1_5 { padding-left: 1.5rem; }
+.pt1_5 { padding-top: 1.5rem; }
+.pb1_5 { padding-bottom: 1.5rem; }
+.px1_5 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.py1_5 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
 .p2 { padding: 2rem; }
 .pr2 { padding-right: 2rem; }
 .pl2 { padding-left: 2rem; }
@@ -83,6 +99,15 @@
   padding-bottom: 4rem;
 }
 
+.mauto { margin: auto; }
+.mxauto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.myauto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .m_25 { margin: 0.225rem; }
 .mr_25 { margin-right: 0.225rem; }
 .ml_25 { margin-left: 0.225rem; }
@@ -146,6 +171,7 @@
 .color-burnt-orange-light { color: #FBCFB6; }
 .color-burnt-orange { color: #f5ab82; }
 .color-burnt-orange-dark { color: #be612e; }
+.color-tangerine { color: #ff9266; }
 
 .bg-black { background : #131921; }
 .bg-white { background: #fff; }
@@ -153,9 +179,12 @@
 .bg-burnt-orange { background: #f5ab82; }
 .bg-burnt-orange-dark { background: #be612e; }
 .bg-shark-blue { background: #6d9cd0; }
+.bg-shark-blue-light { background: #a7cffb; }
+.bg-ice-blue { background: #bcd1e7; }
 
 .border-black { border: 1px solid #131921; }
 .border-burnt-orange { border: 1px solid #f5ab82; }
+.border-burnt-orange-dark { border: 1px solid #be612e; }
 
 /* Resets */
 body {

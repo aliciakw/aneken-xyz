@@ -1,11 +1,24 @@
 <template>
   <div class="BandcampBlock p1">
-    <!-- album art -->
-    <div class="BandcampBlock__album-art">
-      <ImageLoader v-bind:src="data.album_art.url" v-bind:alt="data.album_art.alt" />
-    </div>
-    <!-- player -->
+    <!-- left column -->
     <div class="flex flex-col border-black">
+      <div class="BandcampBlock__album-art mb1">
+        <ImageLoader v-bind:src="data.album_art.url" v-bind:alt="data.album_art.alt" />
+      </div>
+      <a
+        v-if="(data.cta_label || data.cta_url)"
+        class="Button--primary my1"
+        v-bind:href="data.cta_url"
+        v-bind:target="data.cta_target_blank ? '_blank' : ''"
+      >
+        {{ data.cta_label }}
+      </a>
+    </div>
+    <!-- right column -->
+    <div class="flex flex-col border-black">
+      <div v-if="data.message" class="mb1">
+        <AnnouncementBlock v-bind:message="data.message" v-bind:image="data.message_icon"/>
+      </div>
       <iframe
         class="BandcampBlock__player" 
         v-bind:src="bandcampPlayerSrc"
@@ -17,6 +30,7 @@
   </div>
 </template>
 <script>
+import AnnouncementBlock from '../components/AnnouncementBlock';
 import ImageLoader from '../containers/ImageLoader';
 import stripHash from '../utils/stripHash';
 const PLAYER_BG_LIGHT = 'ffffff';
@@ -25,7 +39,8 @@ const DEFAULT_PLAYER_LINK_COLOR = 'be612e'; // burnt orange
 export default {
   name: 'BandcampBlock',
   components: {
-    ImageLoader
+    AnnouncementBlock,
+    ImageLoader,
   },
   props: {
     data: {
@@ -34,6 +49,9 @@ export default {
         url: String,
       },
       bandcamp_album_id: String,
+      cta_label: String,
+      cta_target_blank: String,
+      cta_url: String,
       dark_mode: Boolean,
       link_color: String,
       message: Object,
@@ -54,15 +72,13 @@ export default {
 .BandcampBlock {
   display: grid;
   grid-template-columns: 100%;
-  column-gap: 1rem;
+  column-gap: 2rem;
 }
-.BandcampBlock__album-art {
-  margin-bottom: -3px;
-}
+
 .BandcampBlock__player {
   height: 300px;
 }
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 770px) {
   .BandcampBlock {
     grid-template-columns: 50% 50%;
   }

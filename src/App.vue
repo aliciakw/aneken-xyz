@@ -2,7 +2,7 @@
   <div id="app" class="App bg-black flex flex-row justify-between" :style="cssVars">
     <!-- main column -->
     <div class="App__main-column vw100">
-      <HeaderComponent v-bind:toggleNav="toggleNav" />
+      <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
       <BlockSwitch
         v-bind:slug="pageSlug"
         v-bind:notFoundMessage="notFoundMessage"
@@ -44,7 +44,7 @@ export default {
       spotifyUrl: '',
       youtubeUrl: '',
       menuItems: [],
-      showNav: false,
+      isShowingNav: false,
       notFoundImage: null,
       notFoundMessage: '',
     }
@@ -59,12 +59,12 @@ export default {
     },
     cssVars() {
       return {
-        '--main-col-width': this.showNav ? 'calc(100vw + 400px)' : '100wv',
-        '--main-col-offset': this.showNav ? '-400px' : '0',
-        '--sidebar-width': this.showNav ? '400px' : '0',
-        '--mobile-main-col-width': this.showNav ? '200vw' : '100wv',
-        '--mobile-main-col-offset': this.showNav ? '-400px' : '0',
-        '--mobile-sidebar-width': this.showNav ? '100vw' : '0',
+        '--main-col-width': this.isShowingNav ? 'calc(100vw + 400px)' : '100wv',
+        '--main-col-offset': this.isShowingNav ? '-400px' : '0',
+        '--sidebar-width': this.isShowingNav ? '400px' : '0',
+        '--mobile-main-col-width': this.isShowingNav ? '200vw' : '100wv',
+        '--mobile-main-col-offset': this.isShowingNav ? '-400px' : '0',
+        '--mobile-sidebar-width': this.isShowingNav ? '100vw' : '0',
       }
     }
   },
@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     toggleNav: function() {
-      this.showNav = !this.showNav;
+      this.isShowingNav = !this.isShowingNav;
     },
     fetchGlobalSettings: function() {
       this.$prismic.client.getByUID('global_settings', 'global_settings')
