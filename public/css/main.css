@@ -99,6 +99,15 @@
   padding-bottom: 4rem;
 }
 
+.mauto { margin: auto; }
+.mxauto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.myauto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .m_25 { margin: 0.225rem; }
 .mr_25 { margin-right: 0.225rem; }
 .ml_25 { margin-left: 0.225rem; }

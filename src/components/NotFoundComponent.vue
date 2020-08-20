@@ -1,7 +1,7 @@
 <template>
   <div class="NotFound w100 flex flex-col flex-1 justify-center align-center">
     <div class="NotFound__wrapper">
-      <div class="NotFound__image-wrapper">
+      <div class="NotFound__image-wrapper mauto">
         <ImageLoader v-if="image" v-bind:src="image.url" v-bind:alt="image.alt" />
       </div>
       <h3 class="mt2 mb1 copy text-center">{{ message }}</h3>
@@ -35,7 +35,6 @@ export default {
 <style >
 .NotFound__image-wrapper {
   width: calc(100% - 2rem);
-  margin: auto;
 }
 .NotFound__icon {
  height: 1.5rem;
