@@ -2,7 +2,7 @@
   <div class="AnnouncementBlock position-relative flex flex-col align-end" :style="cssVars">
     <div 
       v-html="serializedMessage" 
-      class="AnnouncementBlock__callout position-relative border-burnt-orange pt1_5 px1_5 pb1"
+      class="AnnouncementBlock__callout position-relative bg-black border-burnt-orange pt1_5 px1_5 pb1"
     />
     <div v-if="image" class="AnnouncementBlock__image mxauto bg-burnt-orange-dark border-burnt-orange-dark circle overflow-hidden flex-none">
       <ImageLoader v-bind:src="image.url" v-bind:alt="image.alt" />
