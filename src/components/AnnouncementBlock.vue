@@ -2,7 +2,7 @@
   <div class="AnnouncementBlock position-relative flex flex-col align-end" :style="cssVars">
     <div 
       v-html="serializedMessage" 
-      class="AnnouncementBlock__callout position-relative border-burnt-orange pt1_5 px1_5 pb1"
+      class="AnnouncementBlock__callout position-relative bg-black border-burnt-orange pt1_5 px1_5 pb1"
     />
     <div v-if="image" class="AnnouncementBlock__image mxauto bg-burnt-orange-dark border-burnt-orange-dark circle overflow-hidden flex-none">
       <ImageLoader v-bind:src="image.url" v-bind:alt="image.alt" />
@@ -47,10 +47,12 @@ export default {
   margin-top: -25px;
   z-index: 2;
 }
+.AnnouncementBlock h1, .AnnouncementBlock h2, .AnnouncementBlock h3, .AnnouncementBlock h4, .AnnouncementBlock h5, .AnnouncementBlock h6, .AnnouncementBlock p {
+  margin-bottom: 1rem;
+}
 .AnnouncementBlock__callout p {
   font-size: 0.8rem;
   line-height: 1.25rem;
-  margin-bottom: 1rem;
 }
 .AnnouncementBlock__callout a {
   color: #be612e;

@@ -7,6 +7,7 @@
         v-bind:slug="pageSlug"
         v-bind:notFoundMessage="notFoundMessage"
         v-bind:notFoundImage="notFoundImage"
+        v-bind:setBackgroundVars="setBackgroundVars"
       />
       <FooterComponent
         v-bind:bandcampUrl="bandcampUrl"
@@ -28,6 +29,8 @@ import HeaderComponent from './components/HeaderComponent.vue';
 import BlockSwitch from './containers/BlockSwitch.vue';
 import FooterComponent from './components/FooterComponent.vue';
 import NavComponent from './components/NavComponent.vue';
+const EMPTY_ARRAY = [];
+const DEFAULT_BACKGROUND_COLOR = '#131921';
 export default {
   name: 'app',
   components: {
@@ -40,6 +43,8 @@ export default {
     return {
       contactEmail: '',
       bandcampUrl: '',
+      backgroundColor: DEFAULT_BACKGROUND_COLOR,
+      backgroundImageUrl: '',
       instagramUrl: '',
       spotifyUrl: '',
       youtubeUrl: '',
@@ -51,14 +56,16 @@ export default {
   },
   computed: {
     pageSlug() {
-      const pathname = window.location.pathname;
-      if (pathname === '/') {
+      const pathname = window.location.pathname ? window.location.pathname.replace(/^\//, '') : '';
+      if (pathname === '') {
         return 'home';
       }
       return pathname;
     },
     cssVars() {
       return {
+        '--background-color': this.backgroundColor ? this.backgroundColor : DEFAULT_BACKGROUND_COLOR,
+        '--background-image': this.backgroundImageUrl ? `url('${this.backgroundImageUrl}')` : 'none',
         '--main-col-width': this.isShowingNav ? 'calc(100vw + 400px)' : '100wv',
         '--main-col-offset': this.isShowingNav ? '-400px' : '0',
         '--sidebar-width': this.isShowingNav ? '400px' : '0',
@@ -72,9 +79,6 @@ export default {
     this.fetchGlobalSettings();
   },
   methods: {
-    toggleNav: function() {
-      this.isShowingNav = !this.isShowingNav;
-    },
     fetchGlobalSettings: function() {
       this.$prismic.client.getByUID('global_settings', 'global_settings')
         .then((document) => {
@@ -84,14 +88,19 @@ export default {
             this.instagramUrl = document.data.instagram_url || '';
             this.spotifyUrl = document.data.spotify_url || '';
             this.youtubeUrl = document.data.youtube_url || '';
-            if (Array.isArray(document.data.menu_items)) {
-              this.menuItems = document.data.menu_items;
-            }
+            this.menuItems = Array.isArray(document.data.menu_items) ? document.data.menu_items : EMPTY_ARRAY;
             this.notFoundImage = document.data.not_found_image || null;
             this.notFoundMessage = document.data.not_found_message || '';
           }
         });
-    }
+    },
+    setBackgroundVars: function(backgroundColor, backgroundImageUrl) {
+      this.backgroundColor = backgroundColor || '';
+      this.backgroundImageUrl = backgroundImageUrl || '';
+    },
+    toggleNav: function() {
+      this.isShowingNav = !this.isShowingNav;
+    },
   }
 }
 </script>
@@ -108,6 +117,10 @@ body {
   left: var(--mobile-main-col-offset);
   overflow: hidden;
   transition: width 0.1s ease-in-out, left 0.1s ease-in-out;
+  background-color: var(--background-color);
+  background-image: var(--background-image);
+  background-position: 50% 50%;
+  background-size: cover;
 }
 .App__sidebar {
   position: fixed;

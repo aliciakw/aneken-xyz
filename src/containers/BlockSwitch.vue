@@ -1,23 +1,26 @@
 <template>
-  <div class="BlockSwitch flex flex-col align-center">
-    <div v-if="blocks">
-      <div class="BlockSwitch__wrapper" v-for="block in blocks" v-bind:key="block.id">
-        <BandcampBlock v-if="block.type === 'bandcamp_block'" v-bind:data="block.data" />
-        <ImageBlock v-if="block.type === 'imageblock'" v-bind:data="block.data" />
-        <VideoBlock v-if="block.type === 'video_block'" v-bind:data="block.data" />
-      </div>
+  <div v-if="blocks" class="BlockSwitch flex flex-col align-center">
+    <div class="BlockSwitch__wrapper flex-1 flex" v-for="block in blocks" v-bind:key="block.id">
+      <BandcampBlock v-if="block.type === 'bandcamp_block'" v-bind:data="block.data" />
+      <ImageBlock v-else-if="block.type === 'imageblock'" v-bind:data="block.data" />
+      <TextBlock v-else-if="block.type === 'text_block'" v-bind:data="block.data" />
+      <VideoBlock v-else-if="block.type === 'video_block'" v-bind:data="block.data" />
+      <p v-else class="detail color-gray"><em>Unable to display content for {{block.type}} {{block.id}}</em></p>
     </div>
-    <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
-  </div> 
+  </div>
+  <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
 </template>
 <script>
 import BandcampBlock from '../components/BandcampBlock';
 import ImageBlock from '../components/ImageBlock';
+import TextBlock from '../components/TextBlock';
 import VideoBlock from '../components/VideoBlock';
 import NotFoundComponent from '../components/NotFoundComponent';
 const graphQuery = `{
   page {
     title
+    background_color
+    background_image
     block_links {
       block {
         ...on imageblock {
@@ -25,7 +28,7 @@ const graphQuery = `{
           image
           caption
         }
-        ...on video_block {
+        ... on video_block {
           video_url
         }
         ... on bandcamp_block {
@@ -41,6 +44,15 @@ const graphQuery = `{
           message_icon
           title
         }
+
+        ... on text_block {
+          body
+          background_color
+          background_image
+          heading_color
+          layout
+          text_color
+        }
       }
     }
   }
@@ -50,6 +62,7 @@ export default {
   components: {
     BandcampBlock,
     ImageBlock,
+    TextBlock,
     VideoBlock,
     NotFoundComponent,
   },
@@ -59,7 +72,8 @@ export default {
     notFoundImage: {
       alt: String,
       url: String,
-    }
+    },
+    setBackgroundVars: Function,
   },
   data() {
     return {
@@ -85,6 +99,10 @@ export default {
               return acc;
             }, []);
             this.blocks = blocks;
+
+            const bgImageUrl = document.data.background_image ? document.data.background_image.url : '';
+            const bgColor = document.data.background_color;
+            this.setBackgroundVars(bgColor, bgImageUrl);
           }
         });
     }
