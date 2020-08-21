@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col align-center p1">
+  <div class="flex flex-col align-center py1">
     <ImageLoader v-bind:src="data.image.url" v-bind:alt="data.image.alt" />
     <div
       v-if="serializedCaption"

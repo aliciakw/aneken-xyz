@@ -3,12 +3,10 @@
     <!-- main column -->
     <div class="App__main-column vw100">
       <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
-      <BlockSwitch
-        v-bind:slug="pageSlug"
-        v-bind:notFoundMessage="notFoundMessage"
-        v-bind:notFoundImage="notFoundImage"
-        v-bind:setBackgroundVars="setBackgroundVars"
-      />
+      <div class="p1">
+      <BlockSwitch v-if="blockLinks" v-bind:blockLinks="blockLinks" />
+      <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
+      </div>
       <FooterComponent
         v-bind:bandcampUrl="bandcampUrl"
         v-bind:instagramUrl="instagramUrl"
@@ -25,19 +23,22 @@
 </template>
 
 <script>
-import HeaderComponent from './components/HeaderComponent.vue';
-import BlockSwitch from './containers/BlockSwitch.vue';
 import FooterComponent from './components/FooterComponent.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
 import NavComponent from './components/NavComponent.vue';
+import NotFoundComponent from './components/NotFoundComponent';
+
+import blockQuery from './queries/blockQuery';
+import globalSettingsQuery from './queries/globalSettingsQuery';
 const EMPTY_ARRAY = [];
 const DEFAULT_BACKGROUND_COLOR = '#131921';
 export default {
   name: 'app',
   components: {
-    HeaderComponent,
-    BlockSwitch,
     FooterComponent,
+    HeaderComponent,
     NavComponent,
+    NotFoundComponent,
   },
   data() {
     return {
@@ -45,6 +46,7 @@ export default {
       bandcampUrl: '',
       backgroundColor: DEFAULT_BACKGROUND_COLOR,
       backgroundImageUrl: '',
+      blockLinks: null,
       instagramUrl: '',
       spotifyUrl: '',
       youtubeUrl: '',
@@ -53,6 +55,43 @@ export default {
       notFoundImage: null,
       notFoundMessage: '',
     }
+  },
+  beforeMount() {
+    this.fetchGlobalSettings();
+    this.fetchBlockList();
+  },
+  methods: {
+    fetchBlockList: function() {
+      this.$prismic.client.getByUID('page', this.pageSlug, { 'graphQuery': blockQuery })
+        .then((document) => {
+          if (document && document.data && Array.isArray(document.data.block_links)) {
+            this.blockLinks = document.data.block_links;
+            this.setBackgroundVars(document.data.background_color, document.data.background_image);
+          }
+        });
+    },
+    fetchGlobalSettings: function() {
+      this.$prismic.client.getByUID('global_settings', 'global_settings', { 'graphQuery': globalSettingsQuery })
+        .then((document) => {
+          if (document && document.data) {
+            this.contactEmail = document.data.contact_email || '';
+            this.bandcampUrl = document.data.bandcamp_url || '';
+            this.instagramUrl = document.data.instagram_url || '';
+            this.spotifyUrl = document.data.spotify_url || '';
+            this.youtubeUrl = document.data.youtube_url || '';
+            this.menuItems = Array.isArray(document.data.menu_items) ? document.data.menu_items : EMPTY_ARRAY;
+            this.notFoundImage = document.data.not_found_image || null;
+            this.notFoundMessage = document.data.not_found_message || '';
+          }
+        });
+    },
+    setBackgroundVars: function(backgroundColor, backgroundImage) {
+      this.backgroundColor = backgroundColor || '';
+      this.backgroundImageUrl = backgroundImage && backgroundImage.url ? backgroundImage.url : '';
+    },
+    toggleNav: function() {
+      this.isShowingNav = !this.isShowingNav;
+    },
   },
   computed: {
     pageSlug() {
@@ -75,33 +114,6 @@ export default {
       }
     }
   },
-  mounted() {
-    this.fetchGlobalSettings();
-  },
-  methods: {
-    fetchGlobalSettings: function() {
-      this.$prismic.client.getByUID('global_settings', 'global_settings')
-        .then((document) => {
-          if (document && document.data) {
-            this.contactEmail = document.data.contact_email || '';
-            this.bandcampUrl = document.data.bandcamp_url || '';
-            this.instagramUrl = document.data.instagram_url || '';
-            this.spotifyUrl = document.data.spotify_url || '';
-            this.youtubeUrl = document.data.youtube_url || '';
-            this.menuItems = Array.isArray(document.data.menu_items) ? document.data.menu_items : EMPTY_ARRAY;
-            this.notFoundImage = document.data.not_found_image || null;
-            this.notFoundMessage = document.data.not_found_message || '';
-          }
-        });
-    },
-    setBackgroundVars: function(backgroundColor, backgroundImageUrl) {
-      this.backgroundColor = backgroundColor || '';
-      this.backgroundImageUrl = backgroundImageUrl || '';
-    },
-    toggleNav: function() {
-      this.isShowingNav = !this.isShowingNav;
-    },
-  }
 }
 </script>
 

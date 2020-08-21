@@ -1,36 +1,26 @@
 <template>
-  <div class="BandcampBlock p1">
-    <!-- left column -->
-    <div class="flex flex-col border-black">
-      <div class="BandcampBlock__album-art mb1">
-        <ImageLoader v-bind:src="data.album_art.url" v-bind:alt="data.album_art.alt" />
-      </div>
-      <a
-        v-if="(data.cta_label || data.cta_url)"
-        class="Button--primary my1"
-        v-bind:href="data.cta_url"
-        v-bind:target="data.cta_target_blank ? '_blank' : ''"
-      >
-        {{ data.cta_label }}
-      </a>
+  <div class="BandcampBlock flex flex-col py1 w100 mxauto">
+    <div class="BandcampBlock__album-art mb_5">
+      <ImageLoader v-bind:src="data.album_art.url" v-bind:alt="data.album_art.alt" />
     </div>
-    <!-- right column -->
-    <div class="flex flex-col border-black">
-      <div v-if="data.message" class="mb1">
-        <AnnouncementBlock v-bind:message="data.message" v-bind:image="data.message_icon"/>
-      </div>
-      <iframe
-        class="BandcampBlock__player" 
-        v-bind:src="bandcampPlayerSrc"
-        seamless
-      >
-        <a v-bind:href="data.album_url">{{ data.title }}</a>
-      </iframe>
-    </div>
+    <a
+      v-if="(data.cta_label || data.cta_url)"
+      class="Button--primary mb1"
+      v-bind:href="data.cta_url"
+      v-bind:target="data.cta_target_blank ? '_blank' : ''"
+    >
+      {{ data.cta_label }}
+    </a>
+    <iframe
+      class="BandcampBlock__player"
+      v-bind:src="bandcampPlayerSrc"
+      seamless
+    >
+      <a v-bind:href="data.album_url">{{ data.title }}</a>
+    </iframe>
   </div>
 </template>
 <script>
-import AnnouncementBlock from '../components/AnnouncementBlock';
 import ImageLoader from '../containers/ImageLoader';
 import stripHash from '../utils/stripHash';
 const PLAYER_BG_LIGHT = 'ffffff';
@@ -39,7 +29,6 @@ const DEFAULT_PLAYER_LINK_COLOR = 'be612e'; // burnt orange
 export default {
   name: 'BandcampBlock',
   components: {
-    AnnouncementBlock,
     ImageLoader,
   },
   props: {
@@ -70,17 +59,21 @@ export default {
 </script>
 <style>
 .BandcampBlock {
-  display: grid;
-  grid-template-columns: 100%;
-  column-gap: 2rem;
+  max-width: 700px;
 }
-
 .BandcampBlock__player {
   height: 300px;
 }
 @media screen and (min-width: 770px) {
   .BandcampBlock {
-    grid-template-columns: 50% 50%;
+    max-width: 350px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@media screen and (min-width: 1250px) {
+  .BandcampBlock {
+    max-width: 400px;
   }
 }
 </style>
