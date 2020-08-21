@@ -1,16 +1,14 @@
 <template>
-  <div class="BlockSwitch flex flex-col align-center">
-    <div v-if="blocks">
-      <div class="BlockSwitch__wrapper" v-for="block in blocks" v-bind:key="block.id">
-        <BandcampBlock v-if="block.type === 'bandcamp_block'" v-bind:data="block.data" />
-        <ImageBlock v-else-if="block.type === 'imageblock'" v-bind:data="block.data" />
-        <TextBlock v-else-if="block.type === 'text_block'" v-bind:data="block.data" />
-        <VideoBlock v-else-if="block.type === 'video_block'" v-bind:data="block.data" />
-        <p v-else class="detail color-gray"><em>Unable to display content for {{block.type}} {{block.id}}</em></p>
-      </div>
+  <div v-if="blocks" class="BlockSwitch flex flex-col align-center">
+    <div class="BlockSwitch__wrapper flex-1 flex" v-for="block in blocks" v-bind:key="block.id">
+      <BandcampBlock v-if="block.type === 'bandcamp_block'" v-bind:data="block.data" />
+      <ImageBlock v-else-if="block.type === 'imageblock'" v-bind:data="block.data" />
+      <TextBlock v-else-if="block.type === 'text_block'" v-bind:data="block.data" />
+      <VideoBlock v-else-if="block.type === 'video_block'" v-bind:data="block.data" />
+      <p v-else class="detail color-gray"><em>Unable to display content for {{block.type}} {{block.id}}</em></p>
     </div>
-    <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
-  </div> 
+  </div>
+  <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
 </template>
 <script>
 import BandcampBlock from '../components/BandcampBlock';

@@ -33,6 +33,9 @@ export default {
 }
 </script>
 <style >
+.NotFound {
+  height: calc(100vh - 130px);
+}
 .NotFound__image-wrapper {
   width: calc(100% - 2rem);
 }

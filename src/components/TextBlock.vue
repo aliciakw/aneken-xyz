@@ -1,10 +1,11 @@
 <template>
-  <div class="TextBlock relative" :style="cssVars">
-    <div class="TextBlock__body" v-html="serializedBody" /> 
+  <div class="TextBlock relative flex-row align-start justify-start" :style="cssVars">
+    <div class="TextBlock__body p1_5" v-html="serializedBody" /> 
   </div>
 </template>
 <script>
 import { RichText } from 'prismic-dom';
+
 export default {
   name: 'TextBlock',
   props: {
@@ -23,6 +24,7 @@ export default {
   computed: {
     cssVars() {
       return {
+        '--background-color': this.data.background_color ? this.data.background_color : 'none',
         '--background-img': this.data.background_image && this.data.background_image.url
           ? `url('${this.data.background_image.url}')`
           : 'none',
@@ -39,13 +41,17 @@ export default {
 }
 </script>
 <style>
-.TextBlock {
+.TextBlock__body {
+  background-color: var(--background-color);
   background-image: var(--background-img);
+  background-position: cover;
   color: var(--text-color);
+}
+.TextBlock h1, .TextBlock h2, .TextBlock h3, .TextBlock h4, .TextBlock h5, .TextBlock h6, .TextBlock p {
+  margin-bottom: 1rem;
 }
 .TextBlock__body p {
   font-size: 0.8rem;
   line-height: 1.25rem;
-  margin-bottom: 1rem;
 }
 </style>

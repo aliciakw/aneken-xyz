@@ -47,10 +47,12 @@ export default {
   margin-top: -25px;
   z-index: 2;
 }
+.AnnouncementBlock h1, .AnnouncementBlock h2, .AnnouncementBlock h3, .AnnouncementBlock h4, .AnnouncementBlock h5, .AnnouncementBlock h6, .AnnouncementBlock p {
+  margin-bottom: 1rem;
+}
 .AnnouncementBlock__callout p {
   font-size: 0.8rem;
   line-height: 1.25rem;
-  margin-bottom: 1rem;
 }
 .AnnouncementBlock__callout a {
   color: #be612e;
