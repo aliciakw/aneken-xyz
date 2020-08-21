@@ -6,6 +6,7 @@ import linkResolver from './prismic/link-resolver'
 import htmlSerializer from './prismic/html-serializer'
 import VueMq from 'vue-mq'
 import { Breakpoints } from './utils/breakpointUtils';
+import BlockSwitch from './containers/BlockSwitch';
 
 require('dotenv').config();
 
@@ -20,6 +21,7 @@ Vue.use(VueMq, {
 });
 
 Vue.config.productionTip = false;
+Vue.component('BlockSwitch', BlockSwitch);
 
 new Vue({
   render: h => h(App),

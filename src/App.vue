@@ -4,7 +4,7 @@
     <div class="App__main-column vw100">
       <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
       
-      <BlockSwitch v-if="blocks" v-bind:blocks="blocks" />
+      <BlockSwitch v-if="blockLinks" v-bind:blockLinks="blockLinks" />
       <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
       
       <FooterComponent
@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import BlockSwitch from './containers/BlockSwitch.vue';
 import FooterComponent from './components/FooterComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 import NavComponent from './components/NavComponent.vue';
@@ -36,7 +35,6 @@ const DEFAULT_BACKGROUND_COLOR = '#131921';
 export default {
   name: 'app',
   components: {
-    BlockSwitch,
     FooterComponent,
     HeaderComponent,
     NavComponent,
@@ -48,7 +46,7 @@ export default {
       bandcampUrl: '',
       backgroundColor: DEFAULT_BACKGROUND_COLOR,
       backgroundImageUrl: '',
-      blocks: null,
+      blockLinks: null,
       instagramUrl: '',
       spotifyUrl: '',
       youtubeUrl: '',
@@ -67,17 +65,7 @@ export default {
       this.$prismic.client.getByUID('page', this.pageSlug, { 'graphQuery': blockQuery })
         .then((document) => {
           if (document && document.data && Array.isArray(document.data.block_links)) {
-            const blocks = document.data.block_links.reduce((acc, blockFields) => {
-              if (blockFields.block.type && !blockFields.block.isBroken) {
-                acc.push({
-                  id: blockFields.block.id,
-                  type: blockFields.block.type,
-                  data: blockFields.block.data,
-                });
-              }
-              return acc;
-            }, []);
-            this.blocks = blocks;
+            this.blockLinks = document.data.block_links;
             this.setBackgroundVars(document.data.background_color, document.data.background_image);
           }
         });
