@@ -17,8 +17,8 @@ export default {
       },
       background_color: String,
       heading_color: String,
-      layout: String,
       text_color: String,
+      variant: String,
     }
   },
   computed: {

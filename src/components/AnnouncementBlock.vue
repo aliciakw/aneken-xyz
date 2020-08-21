@@ -1,11 +1,11 @@
 <template>
-  <div class="AnnouncementBlock position-relative flex flex-col align-end" :style="cssVars">
+  <div class="AnnouncementBlock position-relative flex flex-col align-end py1" :style="cssVars">
     <div 
       v-html="serializedMessage" 
       class="AnnouncementBlock__callout position-relative bg-black border-burnt-orange pt1_5 px1_5 pb1"
     />
-    <div v-if="image" class="AnnouncementBlock__image mxauto bg-burnt-orange-dark border-burnt-orange-dark circle overflow-hidden flex-none">
-      <ImageLoader v-bind:src="image.url" v-bind:alt="image.alt" />
+    <div v-if="data.icon_image" class="AnnouncementBlock__image mxauto bg-burnt-orange-dark border-burnt-orange-dark circle overflow-hidden flex-none">
+      <ImageLoader v-bind:src="data.icon_image.url" v-bind:alt="data.icon_image.alt" />
     </div>
   </div>
 </template>
@@ -18,21 +18,27 @@ export default {
     ImageLoader,
   },
   props: {
-    message: Array, // html
-    image: {
-      alt: String,
-      url: String,
-    }
+    data: {
+      body: Array,
+      background_color: String,
+      heading_color: String,
+      icon_image: {
+        url: String,
+        alt: String,
+      },
+      text_color: String,
+      variant: String,
+    },
   },
   computed: {
     cssVars() {
       return {
-        '--img-url': `url('${this.image.url}')`, 
+        '--img-url': `url('${this.data.icon_image.url}')`,
       }
     },
     serializedMessage: function() {
-      if (this.message) {
-        return RichText.asHtml(this.message);
+      if (this.data && this.data.body) {
+        return RichText.asHtml(this.data.body);
       }
       return '';
     }
@@ -65,11 +71,12 @@ export default {
   }
   .AnnouncementBlock__image {
     margin-left: 0;
-    margin-top: auto;
-    margin-bottom: auto;
+    position: absolute;
+    top: calc(1rem + 50px);
+    right: 0;
   }
   .AnnouncementBlock__callout {
-    margin-right: 30px;
+    margin-right: 90px;
   }
   .AnnouncementBlock__callout::after {
     content: "";
@@ -82,7 +89,7 @@ export default {
     position: absolute;
     transform: rotate(45deg);
     right: -16px;
-    top: calc(50% - 16px);
+    top: 38px;
   }
 }
 

@@ -8,8 +8,6 @@ const blockFields = `
   cta_url
   dark_mode
   link_color
-  message
-  message_icon
   title
 }
 ...on imageblock {
@@ -21,9 +19,11 @@ const blockFields = `
   body
   background_color
   background_image
+  border_color
   heading_color
-  layout
+  icon_image
   text_color
+  variant
 }
 ...on video_block {
   video_url

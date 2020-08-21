@@ -3,10 +3,10 @@
     <!-- main column -->
     <div class="App__main-column vw100">
       <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
-      
+      <div class="p1">
       <BlockSwitch v-if="blockLinks" v-bind:blockLinks="blockLinks" />
       <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
-      
+      </div>
       <FooterComponent
         v-bind:bandcampUrl="bandcampUrl"
         v-bind:instagramUrl="instagramUrl"
