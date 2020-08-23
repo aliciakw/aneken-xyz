@@ -21,12 +21,15 @@ Be sure to confirm all is well on the preview link before merging to master, as 
 Production url: `https://aneken-xyz.vercel.app/`
 
 ### Environment Vars
-A `.env` file at the project root should be created with the following variables. If adding additional values, note that only variables prefixed with `VUE_APP_` will be injected into `process.env` by `vue-cli-service`.
+For local development, create a `.env` file at the project root with the following values.
+Be sure to set these values in Vercel as well for the production and preview environments.
 
 ```
 VUE_APP_SUPPORT_EMAIL_ADDRESS=XXXXXX
 VUE_APP_SUPPORT_EMAIL_PASSWORD=XXXXXX
 ```
+
+If adding additional values, be sure to prefix them with `VUE_APP_` so that Vue CLI will automatically inject them into `process.env`.
 
 ### Lints and fixes files
 ```
