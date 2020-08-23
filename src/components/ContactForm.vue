@@ -10,6 +10,9 @@
 <script>
 export default {
   name: 'ContactForm',
+  props: {
+    contactEmail: String,
+  },
   data() {
     return {
       hasError: false,

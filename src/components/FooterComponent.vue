@@ -15,6 +15,7 @@
           <img class="Footer__social-link" src="img/spotify.svg" />
         </a>
         <span class="detail ml_25 mb_25">// Aneken River &#169; 2020</span>
+        <p class="ml1 mb_25 detail">Support Email: {{supportEmail}}</p>
       </div>
     </div>
   </div>
@@ -27,6 +28,11 @@ export default {
     instagramUrl: String,
     spotifyUrl: String,
     youtubeUrl: String,
+  },
+  data() {
+    return {
+      supportEmail: process.env.VUE_APP_SUPPORT_EMAIL_ADDRESS,
+    };
   }
 };
 </script>
