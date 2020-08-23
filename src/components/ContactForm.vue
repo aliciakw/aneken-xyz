@@ -1,13 +1,14 @@
 <template>
   <form class="ContactForm flex flex-col" v-on:submit="onSubmit">
-    <input v-model="subject.value" placeholder="subject" />
-    <input v-model="name.value" placeholder="your name" />
-    <input v-model="email.value" placeholder="your email" />
-    <textarea v-model="message.value" placeholder="Drop me a line" cols="60" />
-    <input type="submit" role="submit" />
+    <input v-model="name.value" placeholder="Enter your name" />
+    <input v-model="email.value" placeholder="Enter your email" />
+    <textarea v-model="message.value" placeholder="Enter a message" cols="60" />
+    <input type="submit" role="submit" v-bind:disabled="!this.canSubmit" />
   </form>
 </template>
 <script>
+// import sendEmail from '../utils/sendEmail';
+import validators from '../utils/validators';
 export default {
   name: 'ContactForm',
   props: {
@@ -15,11 +16,6 @@ export default {
   },
   data() {
     return {
-      hasError: false,
-      subject: {
-        value: '',
-        hasError: false,
-      },
       name: {
         value: '',
         hasError: false,
@@ -34,28 +30,26 @@ export default {
       },
     }
   },
+  computed: {
+    canSubmit() {
+      return this.name.value && this.email.value && this.message.value;
+    }
+  },
   methods: {
     onValidate(formFields) {
-      let isValid = true
-      console.log('validating:', formFields);
       const fieldNames = Object.keys(formFields);
       let fieldName;
       for (var i = 0; i < fieldNames.length; i++) {
         fieldName = fieldNames[i];
-        if (formFields[fieldName]) { // validate string presence
-          if (this[fieldName].hasError) this[fieldName].hasError = false;
+        if (validators.validateString(formFields[fieldName])) {
+          this[fieldName].hasError = false;
         } else {
           this[fieldName].hasError = true;
-          if (isValid) isValid = false;
         }
       }
-      return isValid;
+      return this.canSubmit();
     },
     onResetForm() {
-      this.subject = {
-        value: '',
-        hasError: false,
-      };
       this.name = {
         value: '',
         hasError: false,
@@ -74,16 +68,15 @@ export default {
       try {
         console.log('submit....');
         const data = {
-          subject: this.subject.value,
           name: this.name.value,
           email: this.email.value,
-          message: this.message.value
+          message: this.message.value,
         };
         const isValid = this.onValidate(data);
         console.log('isValid', isValid)
         if (isValid) {
           // send email
-
+          // sendEmail(data.email, `${data.name} has sent you a message on aneken.xyz`, )
           //
           this.onResetForm()
         } 

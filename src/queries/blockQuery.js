@@ -10,6 +10,13 @@ const blockFields = `
   link_color
   title
 }
+
+...on form_block {
+  title
+  message
+  form_type
+}
+
 ...on imageblock {
   title
   image
