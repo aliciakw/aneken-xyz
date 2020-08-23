@@ -4,8 +4,9 @@
     <div class="App__main-column vw100">
       <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
       <div class="p1">
-      <BlockSwitch v-if="blockLinks" v-bind:blockLinks="blockLinks" />
-      <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
+        <ContactForm />
+        <BlockSwitch v-if="blockLinks" v-bind:blockLinks="blockLinks" />
+        <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
       </div>
       <FooterComponent
         v-bind:bandcampUrl="bandcampUrl"
@@ -27,6 +28,7 @@ import FooterComponent from './components/FooterComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 import NavComponent from './components/NavComponent.vue';
 import NotFoundComponent from './components/NotFoundComponent';
+import ContactForm from './components/ContactForm';
 
 import blockQuery from './queries/blockQuery';
 import globalSettingsQuery from './queries/globalSettingsQuery';
@@ -35,6 +37,7 @@ const DEFAULT_BACKGROUND_COLOR = '#131921';
 export default {
   name: 'app',
   components: {
+    ContactForm,
     FooterComponent,
     HeaderComponent,
     NavComponent,
