@@ -10,6 +10,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "aws-sdk": "^2.738.0",
     "core-js": "^3.4.4",
     "dotenv": "^8.2.0",
     "prismic-dom": "^2.1.0",

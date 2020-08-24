@@ -18,6 +18,7 @@
   transform: translate(-8px, -8px);
   box-shadow: 8px 8px #ff9266;
 }
+
 .Button--secondary {
   text-decoration: none;
   color: #131921;
@@ -30,9 +31,11 @@
   font-weight: bold;
   font-family: 'Amatic SC', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   letter-spacing: 0.3em;
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 }
 .Button--secondary:hover, .Button--secondary:focus, .Button--secondary:active {
-  color: #be612e;
   cursor: pointer;
-  text-decoration: none;
+  text-decoration: underline;
+  transform: translate(-5px, -5px);
+  box-shadow: 5px 5px #ff9266;
 }

@@ -8,8 +8,6 @@ import VueMq from 'vue-mq'
 import { Breakpoints } from './utils/breakpointUtils';
 import BlockSwitch from './containers/BlockSwitch';
 
-require('dotenv').config();
-
 Vue.use(PrismicVue, {
   endpoint: 'https://aneken-xyz.cdn.prismic.io/api/v2',
   linkResolver,

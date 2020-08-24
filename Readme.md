@@ -15,15 +15,21 @@ npm run build
 ```
 
 ### Deployment
-Before deploy, checkout the staging link
-https://aneken-xyz.vercel.app/
+Vercel auto-generates a preview link for each branch in the repo.
+Be sure to confirm all is well on the preview link before merging to master, as production deployment will happen automatically you click the merge button.
 
-Currently hosting this site with aws s3.
+Production url: `https://aneken-xyz.vercel.app/`
+
+### Environment Vars
+For local development, create a `.env` file at the project root with the following values.
+Be sure to set these values in Vercel as well for the production and preview environments.
+
 ```
-npm install -g s3-deploy
-// update ~/.aws/credentials with the correct credentials or profile
-npm run release
+VUE_APP_SUPPORT_EMAIL_ADDRESS=XXXXXX
+VUE_APP_SUPPORT_EMAIL_PASSWORD=XXXXXX
 ```
+
+If adding additional values, be sure to prefix them with `VUE_APP_` so that Vue CLI will automatically inject them into `process.env`.
 
 ### Lints and fixes files
 ```

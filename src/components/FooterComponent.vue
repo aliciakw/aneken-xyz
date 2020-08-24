@@ -27,7 +27,7 @@ export default {
     instagramUrl: String,
     spotifyUrl: String,
     youtubeUrl: String,
-  }
+  },
 };
 </script>
 <style>

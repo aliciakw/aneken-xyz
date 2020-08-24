@@ -54,3 +54,6 @@ a:hover, a:focus, a:active {
   letter-spacing: 0.3em;
 }
 
+.sans-serif {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

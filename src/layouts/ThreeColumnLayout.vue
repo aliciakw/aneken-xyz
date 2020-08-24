@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col md-flex-row">
+  <div class="w100 flex flex-col md-flex-row">
     <div class="flex-1">
       <BlockSwitch v-if="data.block_links_1" v-bind:blockLinks="data.block_links_1" />
     </div>

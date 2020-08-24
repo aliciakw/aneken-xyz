@@ -10,6 +10,19 @@ const blockFields = `
   link_color
   title
 }
+
+...on form_block {
+  background_color
+  button_color
+  button_text_color
+  border_color
+  form_type
+  heading_color
+  message
+  title
+  text_color
+}
+
 ...on imageblock {
   title
   image
@@ -31,9 +44,11 @@ const blockFields = `
 
 export default `{
   page {
-    title
     background_color
     background_image
+    display_page_title
+    text_color
+    title
     block_links {
       block {
         ${blockFields}

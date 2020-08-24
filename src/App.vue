@@ -1,18 +1,19 @@
 <template>
   <div id="app" class="App bg-black flex flex-row justify-between" :style="cssVars">
-    <!-- main column -->
-    <div class="App__main-column vw100">
-      <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
-      <div class="p1">
-      <BlockSwitch v-if="blockLinks" v-bind:blockLinks="blockLinks" />
-      <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
+    <!-- Main content -->
+    <div class="App__body vw100">
+      <div class="App__container mxauto px1">
+        <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
+        <h1 v-if="title && displayPageTitle" class="mb1">{{ title }}</h1>
+        <BlockSwitch v-if="blockLinks" v-bind:blockLinks="blockLinks" />
+        <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
       </div>
       <FooterComponent
-        v-bind:bandcampUrl="bandcampUrl"
-        v-bind:instagramUrl="instagramUrl"
-        v-bind:spotifyUrl="spotifyUrl"
-        v-bind:youtubeUrl="youtubeUrl"
-      />
+          v-bind:bandcampUrl="bandcampUrl"
+          v-bind:instagramUrl="instagramUrl"
+          v-bind:spotifyUrl="spotifyUrl"
+          v-bind:youtubeUrl="youtubeUrl"
+        />
     </div>
 
     <!-- Collapsible Navigation colum -->
@@ -32,6 +33,7 @@ import blockQuery from './queries/blockQuery';
 import globalSettingsQuery from './queries/globalSettingsQuery';
 const EMPTY_ARRAY = [];
 const DEFAULT_BACKGROUND_COLOR = '#131921';
+const DEFAULT_TEXT_COLOR = '#f2f2f2';
 export default {
   name: 'app',
   components: {
@@ -47,6 +49,7 @@ export default {
       backgroundColor: DEFAULT_BACKGROUND_COLOR,
       backgroundImageUrl: '',
       blockLinks: null,
+      displayPageTitle: false,
       instagramUrl: '',
       spotifyUrl: '',
       youtubeUrl: '',
@@ -54,6 +57,8 @@ export default {
       isShowingNav: false,
       notFoundImage: null,
       notFoundMessage: '',
+      textColor: DEFAULT_TEXT_COLOR,
+      title: '',
     }
   },
   beforeMount() {
@@ -66,7 +71,10 @@ export default {
         .then((document) => {
           if (document && document.data && Array.isArray(document.data.block_links)) {
             this.blockLinks = document.data.block_links;
+            this.displayPageTitle = document.data.display_page_title || false;
             this.setBackgroundVars(document.data.background_color, document.data.background_image);
+            this.textColor = document.data.text_color || DEFAULT_TEXT_COLOR;
+            this.title = document.data.title || '';
           }
         });
     },
@@ -103,6 +111,7 @@ export default {
     },
     cssVars() {
       return {
+        '--text-color': this.textColor ? this.textColor : DEFAULT_TEXT_COLOR,
         '--background-color': this.backgroundColor ? this.backgroundColor : DEFAULT_BACKGROUND_COLOR,
         '--background-image': this.backgroundImageUrl ? `url('${this.backgroundImageUrl}')` : 'none',
         '--main-col-width': this.isShowingNav ? 'calc(100vw + 400px)' : '100wv',
@@ -129,6 +138,7 @@ body {
   left: var(--mobile-main-col-offset);
   overflow: hidden;
   transition: width 0.1s ease-in-out, left 0.1s ease-in-out;
+  color: var(--text-color);
   background-color: var(--background-color);
   background-image: var(--background-image);
   background-position: 50% 50%;
@@ -142,6 +152,9 @@ body {
   transition: width 0.1s ease-in-out;
   overflow: hidden;
 }
+.App__container {
+  min-height: 100vh;
+}
 @media screen and (min-width: 550px) {
   .App {
     width: var(--main-col-width);
@@ -150,6 +163,8 @@ body {
   .App__sidebar {
     width: var(--sidebar-width);
   }
+  .App__container {
+    max-width: 900px;
+  }
 }
-
 </style>
