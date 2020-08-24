@@ -3,7 +3,7 @@
     <div
       v-if="serializedMessage"
       v-html="serializedMessage"
-      class="body mb1"
+      class="v-html mb1"
     />
     <form class="flex flex-col" v-on:submit="onSubmit">
       <label class="ContactForm__heading" for="senderName">Full Name</label>
@@ -13,7 +13,14 @@
       <input class="ContactForm__input body sans-serif" v-model="email.value" name="emailAddress" placeholder="Enter your email" />
 
       <label class="ContactForm__heading" for="message">Message</label>
-      <textarea class="ContactForm__input body sans-serif" v-model="message.value" name="message" placeholder="Enter a message" cols="60" />
+      <textarea
+        class="ContactForm__input body sans-serif"
+        v-model="message.value"
+        name="message"
+        placeholder="Enter a message"
+        rows="4"
+        cols="60"
+      />
 
       <input class="ContactForm__submit Button--secondary" type="submit" role="submit" v-bind:value="submitButtonLabel" v-bind:disabled="isMakingRequest" />
       <p v-if="showValidationError" class="detail mt1">

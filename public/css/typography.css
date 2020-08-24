@@ -57,3 +57,12 @@ a:hover, a:focus, a:active {
 .sans-serif {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.v-html p, .v-html li {
+  font-size: 0.85rem;
+  line-height: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.v-html h1, .v-html h2, .v-html h3, .v-html h4, .v-html h5, .v-html h6 {
+  margin-bottom: 1rem;
+}
