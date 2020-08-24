@@ -1,34 +1,24 @@
-import nodemailer from 'nodemailer';
+import axios from 'axios';
+import querystring from 'querystring';
 
 function sendEmail(senderEmail, subject, body) {
-  let success = false;
-  try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.VUE_APP_SUPPORT_EMAIL_ADDRESS,
-        pass: process.env.VUE_APP_SUPPORT_EMAIL_PASSWORD,
-      }
-    });
-    const mailOptions = {
-      from: senderEmail,
-      to: process.env.VUE_APP_SUPPORT_EMAIL_ADDRESS,
-      subject: subject,
-      text: body
-    };
-    console.log('[mailOptions]', mailOptions);
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log('[sendEmail] Error:', error);
-      } else {
-        console.log('Email sent: ' + info.response);
-        success = true;
-      }
-    });
-  } catch (error) {
-    console.log('[sendEmail] Error:', error);
-  }
-  return success;
+  const params = {
+    'Action': 'SendEmail',
+    'Source': process.env.VUE_APP_INFO_EMAIL_ADDRESS,
+    'Destination.ToAddresses.member.1': process.env.VUE_APP_SUPPORT_EMAIL_ADDRESS,
+    'Message.Subject.Data': subject,
+    'Message.Body.Text.Data': body
+  };
+  const url = `https://${process.env.VUE_APP_AWS_SES_URL}?${querystring.encode(params)}`;
+  console.log(url);
+  
+  axios.get(url)
+  .then(function(response) {
+    console.log('Success:', response);
+  })
+  .catch(function (error) {
+    console.log('Error:', error);
+  });
 }
 
 export default sendEmail;
