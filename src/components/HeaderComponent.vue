@@ -1,5 +1,5 @@
 <template>
-  <div class="HeaderComponent flex flex-row justify-center">
+  <div class="HeaderComponent flex flex-row justify-center mb1">
     <a href="/">
       <h1 class="title press-start-2p color-shark-blue py1_5">Aneken River</h1>
     </a>
