@@ -18,6 +18,7 @@
   transform: translate(-8px, -8px);
   box-shadow: 8px 8px #ff9266;
 }
+
 .Button--secondary {
   text-decoration: none;
   color: #131921;
@@ -32,7 +33,6 @@
   letter-spacing: 0.3em;
   transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 }
-
 .Button--secondary:hover, .Button--secondary:focus, .Button--secondary:active {
   cursor: pointer;
   text-decoration: underline;
