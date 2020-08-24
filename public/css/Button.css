@@ -3,11 +3,15 @@
   color: #131921;
   background: #a7cffb;
   box-shadow: 3px 3px #ff9266;
-  padding: 0.75rem;
+  padding: 0.5rem 2rem;
   text-align: center;
-  font-size: 1.75em;
-  font-weight: bold;
-  font-family: 'Gloria Hallelujah', cursive;
+  vertical-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  height: 2.25rem;
+  font-family: 'Press Start 2P', monospace;
   letter-spacing: 0.1em;
   transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 }
@@ -23,19 +27,39 @@
   text-decoration: none;
   color: #131921;
   border: none;
-  background: #f5ab82;
+  background: #ff9266;
   box-shadow: none;
-  padding: 1rem;
-  text-align: center;
-  font-size: 1.75em;
+  padding: 0.5rem 1rem;
+  vertical-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+  height: 2.75rem;
   font-weight: bold;
-  font-family: 'Amatic SC', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  letter-spacing: 0.3em;
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 0.1em;
   transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 }
 .Button--secondary:hover, .Button--secondary:focus, .Button--secondary:active {
   cursor: pointer;
   text-decoration: underline;
   transform: translate(-5px, -5px);
-  box-shadow: 5px 5px #ff9266;
+  color: #a7cffb;
+  box-shadow: 5px 5px #a7cffb;
+}
+.Button--secondary:disabled:hover, .Button--secondary:disabled:focus, .Button--secondary:disabled:active {
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@media screen and (min-width: 500px) {
+  .Button--primary {
+    font-size: 1.125em;
+  }
+
+  .Button--secondary {
+    font-size: 1.0625em;
+  }
 }

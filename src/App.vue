@@ -2,7 +2,7 @@
   <div id="app" class="App bg-black flex flex-row justify-between" :style="cssVars">
     <!-- Main content -->
     <div class="App__body vw100">
-      <div class="App__container mxauto px1">
+      <div class="App__container mxauto px1_5">
         <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
         <GentleLoader v-bind:preloadContent="fetchBlockList" >
           <h1 v-if="title && displayPageTitle" class="mb1">{{ title }}</h1>

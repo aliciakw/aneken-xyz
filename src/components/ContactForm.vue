@@ -5,32 +5,47 @@
       v-html="serializedMessage"
       class="v-html mb1"
     />
-    <form class="flex flex-col" v-on:submit="onSubmit">
+    <form class="flex flex-col mb2" v-on:submit="onSubmit">
       <label class="ContactForm__heading" for="senderName">Full Name</label>
-      <input class="ContactForm__input body sans-serif" v-model="name.value" name="senderName" placeholder="Enter your name" />
+      <input
+        class="ContactForm__input body sans-serif"
+        v-model="name.value"
+        v-bind:disabled="isMakingRequest || showSuccessMessage"
+        name="senderName"
+        placeholder="Enter your name"
+      />
 
       <label class="ContactForm__heading" for="emailAddress">Email Address</label>
-      <input class="ContactForm__input body sans-serif" v-model="email.value" name="emailAddress" placeholder="Enter your email" />
+      <input
+        class="ContactForm__input body sans-serif"
+        v-model="email.value"
+        v-bind:disabled="isMakingRequest || showSuccessMessage"
+        name="emailAddress"
+        placeholder="Enter your email"
+      />
 
       <label class="ContactForm__heading" for="message">Message</label>
       <textarea
         class="ContactForm__input body sans-serif"
         v-model="message.value"
+        v-bind:disabled="isMakingRequest || showSuccessMessage"
         name="message"
         placeholder="Enter a message"
-        rows="4"
+        rows="8"
         cols="60"
       />
 
-      <input class="ContactForm__submit Button--secondary" type="submit" role="submit" v-bind:value="submitButtonLabel" v-bind:disabled="isMakingRequest" />
-      <p v-if="showValidationError" class="detail mt1">
-        Please make sure all fields are filled out and you have entered a valid email to send your message.
+      <p v-if="showValidationError" class="detail my1">
+        <em>Please make sure all fields are filled out and you have entered a valid email to send your message.</em>
       </p>
-      <p v-if="showSubmissionError" class="detail mt1">
-        Whoops, something went wrong. Please try again.
+      <p v-if="showSubmissionError" class="detail my1">
+        <em>Whoops, something went wrong. Please try again.</em>
       </p>
-      <p v-if="showSuccessMessage" class="detail mt1">
-        Message sent. Thanks!
+      <div class="my1 flex justify-end">
+        <input class="ContactForm__submit Button--secondary" type="submit" role="submit" v-bind:value="submitButtonLabel" v-bind:disabled="isMakingRequest || showSuccessMessage" />
+      </div>
+      <p v-if="showSuccessMessage" class="detail text-right">
+        <em>Thanks!</em>
       </p>
     </form>
   </div>
@@ -39,7 +54,12 @@
 import { RichText } from 'prismic-dom';
 import sendEmail from '../utils/sendEmail';
 import validate from '../utils/validators';
+
+const DEFAULT_BG_COLOR = '#BCD1E7';
+const DEFAULT_BORDER_COLOR = '#6D9CC0';
+
 const FieldNames = ['name', 'email', 'message'];
+
 export default {
   name: 'ContactForm',
   props: {
@@ -75,11 +95,10 @@ export default {
   computed: {
     cssVars() {
       return {
-        '--background-color': this.data && this.data.background_color ? this.data.background_color : 'inherit',
-        '--border-color': this.data && this.data.border_color ? this.data.border_color : 'inherit',
+        '--background-color': this.data && this.data.background_color ? this.data.background_color : DEFAULT_BG_COLOR,
+        '--border-color': this.data && this.data.border_color ? this.data.border_color : DEFAULT_BORDER_COLOR,
         '--button-color': this.data && this.data.button_color ? this.data.button_color : 'inherit',
         '--button-text-color': this.data && this.data.button_text_color ? this.data.button_text_color : 'inherit',
-        '--heading-color': this.data && this.data.heading_color ? this.data.heading_color : 'inherit',
         '--text-color': this.data && this.data.text_color ? this.data.text_color : 'inherit',
       }
     },
@@ -90,7 +109,9 @@ export default {
       return '';
     },
     submitButtonLabel() {
-      return this.isMakingRequest ? 'Sending...' : 'Send';
+      if (this.isMakingRequest) return 'sending...';
+      if (this.showSuccessMessage) return 'sent';
+      return 'send';
     },
   },
   methods: {
@@ -119,23 +140,7 @@ export default {
       this.showSubmissionError = true;
       this.isMakingRequest = false;
     },
-    _onSuccess(data) {
-      console.log('SUCCESS', data);
-      this.name = {
-        value: '',
-        hasError: false,
-        validator: 'string',
-      };
-      this.email = {
-        value: '',
-        hasError: false,
-        validator: 'email',
-      };
-      this.message = {
-        value: '',
-        hasError: false,
-        validator: 'string',
-      };
+    _onSuccess() {
       this.showSuccessMessage = true;
       this.isMakingRequest = false;
     },
@@ -181,11 +186,10 @@ Respond to ${name} at ${email}.`;
 .ContactForm {
   color: var(--text-color);
 }
-.ContactForm a {
+.ContactForm a,
+.ContactForm__heading,
+.ContactForm ::placeholder {
   color: var(--border-color);
-}
-.ContactForm__heading {
-  color: var(--heading-color);
 }
 .ContactForm__input {
   border: 3px solid var(--border-color);
@@ -193,15 +197,9 @@ Respond to ${name} at ${email}.`;
   padding: 0.75rem 0.5rem;
   background: var(--background-color);
 }
-.ContactForm__submit {
-  border: none;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  background: var(--button-color);
-  color: var(--button-text-color);
-}
 .ContactForm__submit:hover, .ContactForm__submit:active, .ContactForm__submit:focus {
-  box-shadow: 4px 4px var(--border-color);
+  color: var(--border-color);
+  box-shadow: 5px 5px var(--border-color);
 }
 @media screen and (min-width: 550px) {
   .ContactForm {

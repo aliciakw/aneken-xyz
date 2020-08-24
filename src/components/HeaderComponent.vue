@@ -1,7 +1,7 @@
 <template>
   <div class="HeaderComponent flex flex-row justify-center">
     <a href="/">
-      <h1 class="title handwriting color-shark-blue">Aneken River</h1>
+      <h1 class="title press-start-2p color-shark-blue py1_5">Aneken River</h1>
     </a>
     <button
       v-if="!isShowingNav || $mq === 'tablet' || $mq === 'laptop' || $mq === 'desktop' "
