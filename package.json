@@ -11,16 +11,13 @@
   },
   "dependencies": {
     "aws-sdk": "^2.738.0",
-    "axios": "^0.20.0",
     "core-js": "^3.4.4",
     "dotenv": "^8.2.0",
-    "nodemailer": "^6.4.11",
     "prismic-dom": "^2.1.0",
     "prismic-javascript": "^1.5.1",
     "prismic-vue": "^2.0.0",
     "vue": "^2.6.10",
-    "vue-mq": "^1.0.1",
-    "xhr": "^2.5.0"
+    "vue-mq": "^1.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
