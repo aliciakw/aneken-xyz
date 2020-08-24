@@ -17,7 +17,6 @@ const blockFields = `
   button_text_color
   border_color
   form_type
-  heading_color
   message
   title
   text_color

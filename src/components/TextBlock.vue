@@ -1,6 +1,6 @@
 <template>
   <div class="TextBlock relative flex-row align-start justify-start" :style="cssVars">
-    <div class="TextBlock__body p1_5" v-html="serializedBody" /> 
+    <div class="TextBlock__body p1_5 v-html" v-html="serializedBody" />
   </div>
 </template>
 <script>
@@ -46,12 +46,5 @@ export default {
   background-image: var(--background-img);
   background-position: cover;
   color: var(--text-color);
-}
-.TextBlock h1, .TextBlock h2, .TextBlock h3, .TextBlock h4, .TextBlock h5, .TextBlock h6, .TextBlock p {
-  margin-bottom: 1rem;
-}
-.TextBlock__body p {
-  font-size: 0.8rem;
-  line-height: 1.25rem;
 }
 </style>

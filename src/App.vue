@@ -2,11 +2,14 @@
   <div id="app" class="App bg-black flex flex-row justify-between" :style="cssVars">
     <!-- Main content -->
     <div class="App__body vw100">
-      <div class="App__container mxauto px1">
+      <div class="App__container mxauto px1_5">
         <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
-        <h1 v-if="title && displayPageTitle" class="mb1">{{ title }}</h1>
-        <BlockSwitch v-if="blockLinks" v-bind:blockLinks="blockLinks" />
-        <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
+        <GentleLoader v-bind:preloadContent="fetchBlockList" >
+          <h1 v-if="title && displayPageTitle" class="mb1">{{ title }}</h1>
+          <BlockSwitch v-if="blockLinks && blockLinks.length" v-bind:blockLinks="blockLinks" />
+          <p v-else-if="blockLinks">...coming soon!</p>
+          <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
+        </GentleLoader>
       </div>
       <FooterComponent
           v-bind:bandcampUrl="bandcampUrl"
@@ -28,6 +31,7 @@ import FooterComponent from './components/FooterComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 import NavComponent from './components/NavComponent.vue';
 import NotFoundComponent from './components/NotFoundComponent';
+import GentleLoader from './containers/GentleLoader.vue';
 
 import blockQuery from './queries/blockQuery';
 import globalSettingsQuery from './queries/globalSettingsQuery';
@@ -38,6 +42,7 @@ export default {
   name: 'app',
   components: {
     FooterComponent,
+    GentleLoader,
     HeaderComponent,
     NavComponent,
     NotFoundComponent,
@@ -54,6 +59,7 @@ export default {
       spotifyUrl: '',
       youtubeUrl: '',
       menuItems: [],
+      isLoading: true,
       isShowingNav: false,
       notFoundImage: null,
       notFoundMessage: '',
@@ -63,19 +69,22 @@ export default {
   },
   beforeMount() {
     this.fetchGlobalSettings();
-    this.fetchBlockList();
   },
   methods: {
-    fetchBlockList: function() {
+    fetchBlockList: function(didLoad) {
       this.$prismic.client.getByUID('page', this.pageSlug, { 'graphQuery': blockQuery })
         .then((document) => {
           if (document && document.data && Array.isArray(document.data.block_links)) {
-            this.blockLinks = document.data.block_links;
+            this.blockLinks = document.data.block_links.filter(link => link && link.block && link.block.type);
             this.displayPageTitle = document.data.display_page_title || false;
             this.setBackgroundVars(document.data.background_color, document.data.background_image);
             this.textColor = document.data.text_color || DEFAULT_TEXT_COLOR;
             this.title = document.data.title || '';
           }
+          didLoad();
+        })
+        .catch((error) => {
+          didLoad();
         });
     },
     fetchGlobalSettings: function() {
