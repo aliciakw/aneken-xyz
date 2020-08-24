@@ -12,9 +12,15 @@ const blockFields = `
 }
 
 ...on form_block {
-  title
-  message
+  background_color
+  button_color
+  button_text_color
+  border_color
   form_type
+  heading_color
+  message
+  title
+  text_color
 }
 
 ...on imageblock {
@@ -38,9 +44,11 @@ const blockFields = `
 
 export default `{
   page {
-    title
     background_color
     background_image
+    display_page_title
+    text_color
+    title
     block_links {
       block {
         ${blockFields}
