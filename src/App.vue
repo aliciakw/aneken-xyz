@@ -1,19 +1,19 @@
 <template>
   <div id="app" class="App bg-black flex flex-row justify-between" :style="cssVars">
-    <!-- main column -->
-    <div class="App__main-column vw100">
-      <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
-      <div class="p1">
-        <h1 v-if="title && displayPageTitle" class="mx2 mb1">{{ title }}</h1>
+    <!-- Main content -->
+    <div class="App__body vw100">
+      <div class="App__container mxauto px1">
+        <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
+        <h1 v-if="title && displayPageTitle" class="mb1">{{ title }}</h1>
         <BlockSwitch v-if="blockLinks" v-bind:blockLinks="blockLinks" />
         <NotFoundComponent v-else v-bind:message="notFoundMessage" v-bind:image="notFoundImage" />
       </div>
       <FooterComponent
-        v-bind:bandcampUrl="bandcampUrl"
-        v-bind:instagramUrl="instagramUrl"
-        v-bind:spotifyUrl="spotifyUrl"
-        v-bind:youtubeUrl="youtubeUrl"
-      />
+          v-bind:bandcampUrl="bandcampUrl"
+          v-bind:instagramUrl="instagramUrl"
+          v-bind:spotifyUrl="spotifyUrl"
+          v-bind:youtubeUrl="youtubeUrl"
+        />
     </div>
 
     <!-- Collapsible Navigation colum -->
@@ -152,6 +152,9 @@ body {
   transition: width 0.1s ease-in-out;
   overflow: hidden;
 }
+.App__container {
+  min-height: 100vh;
+}
 @media screen and (min-width: 550px) {
   .App {
     width: var(--main-col-width);
@@ -160,6 +163,8 @@ body {
   .App__sidebar {
     width: var(--sidebar-width);
   }
+  .App__container {
+    max-width: 900px;
+  }
 }
-
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <div class="flex w100 flex-col md-flex-row">
-    <div class="flex flex-col flex-1">
+  <div class="w100 flex flex-col md-flex-row">
+    <div class="flex-1">
       <BlockSwitch v-if="data.block_links_1" v-bind:blockLinks="data.block_links_1" />
     </div>
-    <div class="flex flex-1">
-      <BlockSwitch v-if="data.block_links_2" v-bind:blockLinks="data.block_links_2" />
+    <div class="flex-1">
+     <BlockSwitch v-if="data.block_links_2" v-bind:blockLinks="data.block_links_2" />
     </div>
   </div>
 </template>

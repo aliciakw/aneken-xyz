@@ -1,5 +1,5 @@
 <template>
-  <div class="ContactForm w100 flex flex-col" :style="cssVars">
+  <div class="ContactForm flex flex-col" :style="cssVars">
     <div
       v-if="serializedMessage"
       v-html="serializedMessage"
@@ -172,7 +172,6 @@ Respond to ${name} at ${email}.`;
 </script>
 <style>
 .ContactForm {
-  max-width: 400px;
   color: var(--text-color);
 }
 .ContactForm a {
@@ -196,5 +195,11 @@ Respond to ${name} at ${email}.`;
 }
 .ContactForm__submit:hover, .ContactForm__submit:active, .ContactForm__submit:focus {
   box-shadow: 4px 4px var(--border-color);
+}
+@media screen and (min-width: 550px) {
+  .ContactForm {
+    padding-right: 30px;
+    max-width: 420px;
+  }
 }
 </style>
