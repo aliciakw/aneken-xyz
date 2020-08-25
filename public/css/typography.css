@@ -23,7 +23,7 @@ a:hover, a:focus, a:active {
   line-height: 1.35rem;
 }
 .detail {
-  font-size: .85rem;
+  font-size: .75rem;
 }
 
 @media screen and (min-width: 500px) {
@@ -41,7 +41,7 @@ a:hover, a:focus, a:active {
     line-height: 1.35rem;
   }
   .detail {
-    font-size: .85rem;
+    font-size: .75rem;
   }
 }
 
@@ -67,10 +67,19 @@ a:hover, a:focus, a:active {
   margin-bottom: 1rem;
 }
 
+.v-html-sm p, .v-html-sm li {
+  font-size: 0.75rem;
+  line-height: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+.v-html-sm h1, .v-html-sm h2, .v-html h3, .v-html-sm h4, .v-html-sm h5, .v-html-sm h6 {
+  margin-bottom: 0.5rem;
+}
+
 .Form__input {
-  background-color: #fbcfb6;
-  border-color: #be612e;
-  box-shadow: inset 0px 0px 0px 1px #be612e;
+  background-color: #bcd1e7;
+  border-color: #2D4A68;
+  box-shadow: inset 0px 0px 0px 1px #2D4A68;
   box-sizing: border-box;
   border-style: solid;
   margin: 0.5rem 0;
@@ -78,9 +87,12 @@ a:hover, a:focus, a:active {
   box-sizing: border-box;
 }
 
+.Form__input::placeholder {
+  color: #2D4A68;
+}
+
 .Form__submit {
-  background-color: #fbcfb6;
-  border-color: #be612e;
+  border-color: #2D4A68;
   border-style: solid;
   margin: 0.5rem 0;
   padding: 0.75rem 0.5rem;

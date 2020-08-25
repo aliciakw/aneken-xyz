@@ -1,5 +1,5 @@
 <template>
-  <div class="Footer flex flex-col align-center color-black bg-shark-blue py1">
+  <div class="Footer flex flex-col align-center color-black bg-ice-blue py1">
     <div class="Footer__wrapper w100">
       <div class="Footer__row flex flex-row justify-end align-center mx1">
         <a v-if="instagramUrl" v-bind:href="instagramUrl" target="_blank">

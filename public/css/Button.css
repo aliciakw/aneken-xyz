@@ -1,8 +1,8 @@
 .Button--primary {
   text-decoration: none;
-  color: #131921;
-  background: #a7cffb;
-  box-shadow: 3px 3px #ff9266;
+  color: #2D4A68;
+  background: #bcd1e7;
+  box-shadow: 6px 6px #2D4A68;
   padding: 0.5rem 2rem;
   text-align: center;
   vertical-align: center;
@@ -16,11 +16,10 @@
   transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 }
 .Button--primary:hover, .Button--primary:focus, .Button--primary:active {
-  color: #ff9266;
   cursor: pointer;
   text-decoration: underline;
   transform: translate(-8px, -8px);
-  box-shadow: 8px 8px #ff9266;
+  box-shadow: 8px 8px #2D4A68;
 }
 
 .Button--secondary {
@@ -56,9 +55,9 @@
 
 .Button--tertiary {
   text-decoration: none;
-  color: #FBCFB6;
+  color: #bcd1e7;
   border: none;
-  background: #be612e;
+  background: #2D4A68;
   box-shadow: none;
   padding: 0.5rem 1rem;
   vertical-align: center;
@@ -74,7 +73,7 @@
 .Button--tertiary:hover, .Button--tertiary:focus, .Button--tertiary:active {
   cursor: pointer;
   text-decoration: underline;
-  color: #FBCFB6;
+  color: #bcd1e7;
 }
 
 button:disabled:hover, button:disabled:focus, button:disabled:active {

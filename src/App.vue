@@ -137,8 +137,8 @@ export default {
 
 <style>
 body {
-  background: #6d9cd0; /* .bg-shark-blue */
-  color: #f2f2f2;
+  background: #bcd1e7; /* .bg-ice-blue */
+  color: #2D4A68;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .App {
