@@ -16,7 +16,7 @@ a:hover, a:focus, a:active {
   font-size: 1.5rem;
 }
 .subheading {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 .copy {
   font-size: 0.9rem;
@@ -34,7 +34,7 @@ a:hover, a:focus, a:active {
     font-size: 1.5rem;
   }
   .subheading {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
   }
   .copy {
     font-size: 0.9rem;
@@ -65,4 +65,26 @@ a:hover, a:focus, a:active {
 }
 .v-html h1, .v-html h2, .v-html h3, .v-html h4, .v-html h5, .v-html h6 {
   margin-bottom: 1rem;
+}
+
+.Form__input {
+  background-color: #fbcfb6;
+  border-color: #be612e;
+  box-shadow: inset 0px 0px 0px 1px #be612e;
+  box-sizing: border-box;
+  border-style: solid;
+  margin: 0.5rem 0;
+  padding: 0.75rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.Form__submit {
+  background-color: #fbcfb6;
+  border-color: #be612e;
+  border-style: solid;
+  margin: 0.5rem 0;
+  padding: 0.75rem 0.5rem;
+}
+.Form__submit:hover, .Form__submit:active, .Form__submit:focus {
+  color: #be612e;
 }

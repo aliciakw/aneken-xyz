@@ -54,6 +54,36 @@
   box-shadow: none;
 }
 
+.Button--tertiary {
+  text-decoration: none;
+  color: #FBCFB6;
+  border: none;
+  background: #be612e;
+  box-shadow: none;
+  padding: 0.5rem 1rem;
+  vertical-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+  height: 2.75rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+.Button--tertiary:hover, .Button--tertiary:focus, .Button--tertiary:active {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #FBCFB6;
+}
+
+button:disabled:hover, button:disabled:focus, button:disabled:active {
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+
 @media screen and (min-width: 500px) {
   .Button--primary {
     font-size: 1.125em;

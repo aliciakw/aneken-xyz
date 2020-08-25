@@ -83,7 +83,7 @@ export default {
           }
           didLoad();
         })
-        .catch((error) => {
+        .catch(() => {
           didLoad();
         });
     },
