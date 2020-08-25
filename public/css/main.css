@@ -166,6 +166,19 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.m1_5 { margin: 1.5rem; }
+.mr1_5 { margin-right: 1.5rem; }
+.ml1_5 { margin-left: 1.5rem; }
+.mt1_5 { margin-top: 1.5rem; }
+.mb1_5 { margin-bottom: 1.5rem; }
+.mx1_5 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+.my_1_5 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
 .m2 { margin: 2rem; }
 .mr2 { margin-right: 2rem; }
 .ml2 { margin-left: 2rem; }
@@ -193,6 +206,19 @@ iframe {
   border: none;
 }
 
+.sr-only {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+	-webkit-clip-path: inset(50%) !important;
+		clip-path: inset(50%) !important;  /* 2 */
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;            /* 3 */
+}
 
 /* Assumed Breakpoints
 $breakpoints: (
