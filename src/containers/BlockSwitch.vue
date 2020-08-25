@@ -4,6 +4,7 @@
       <LayoutSwitch v-if="link.block.type === 'layout_block'" v-bind:data="link.block.data" />
       <BandcampBlock v-else-if="link.block.type === 'bandcamp_block'" v-bind:data="link.block.data" />
       <ContactForm v-else-if="link.block.type === 'form_block' && link.block.data && link.block.data.form_type === 'Contact Form'" v-bind:data="link.block.data" />
+      <NewsletterSubscriptionForm v-else-if="link.block.type === 'form_block' && link.block.data && link.block.data.form_type === 'Newsletter Subscription Form'" v-bind:data="link.block.data" />
       <ImageBlock v-else-if="link.block.type === 'imageblock'" v-bind:data="link.block.data" />
       <TextBlock
         v-else-if="link.block.type === 'text_block' && link.block.data.variant === 'default'" v-bind:data="link.block.data"
@@ -21,6 +22,7 @@ import AnnouncementBlock from '../components/AnnouncementBlock';
 import BandcampBlock from '../components/BandcampBlock';
 import ContactForm from '../components/ContactForm';
 import ImageBlock from '../components/ImageBlock';
+import NewsletterSubscriptionForm from '../components/NewsletterSubscriptionForm';
 import TextBlock from '../components/TextBlock';
 import VideoBlock from '../components/VideoBlock';
 import LayoutSwitch from '../layouts/LayoutSwitch';
@@ -33,6 +35,7 @@ export default {
     ContactForm,
     ImageBlock,
     LayoutSwitch,
+    NewsletterSubscriptionForm,
     TextBlock,
     VideoBlock,
   },

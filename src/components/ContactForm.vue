@@ -192,7 +192,7 @@ Respond to ${name} at ${email}.`;
   color: var(--border-color);
 }
 .ContactForm__input {
-  border: 3px solid var(--border-color);
+  border: none;
   margin: 0.5rem 0;
   padding: 0.75rem 0.5rem;
   background: var(--background-color);
