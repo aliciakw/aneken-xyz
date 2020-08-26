@@ -1,5 +1,5 @@
 <template>
-  <div class="TextBlock relative flex-row align-start justify-start" :style="cssVars">
+  <div class="TextBlock relative flex-row align-start justify-start py1" :style="cssVars">
     <div class="TextBlock__body p1_5 v-html" v-html="serializedBody" />
   </div>
 </template>

@@ -27,6 +27,14 @@ const blockFields = `
   image
   caption
 }
+
+...on spotify_block {
+  title
+  widget_type
+  spotify_artist_id
+  spotify_track_id
+}
+
 ...on text_block {
   body
   background_color
