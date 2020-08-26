@@ -12,6 +12,7 @@
 <script>
 import { RichText } from 'prismic-dom';
 import ImageLoader from '../containers/ImageLoader';
+
 export default {
   name: 'AnnouncementBlock',
   components: {
@@ -19,26 +20,31 @@ export default {
   },
   props: {
     data: {
-      body: Array,
-      background_color: String,
-      heading_color: String,
       icon_image: {
         url: String,
         alt: String,
       },
-      text_color: String,
-      variant: String,
+      message: Array,
+      orientation: String,
+      published_at: Date,
     },
   },
   computed: {
     cssVars() {
       return {
+        '--img-left': this.data.orientation && this.data.orientation === 'left' ? 0 : 'initial',
+        '--img-right': this.data.orientation && this.data.orientation === 'left' ? 'initial' : 0,
         '--img-url': `url('${this.data.icon_image.url}')`,
+        '--callout-m-left': this.data.orientation && this.data.orientation === 'left' ? '90px' : 0,
+        '--callout-m-right': this.data.orientation && this.data.orientation === 'left' ? 0 : '90px',
+        '--caret-left': this.data.orientation && this.data.orientation === 'left' ? '-16px' : 'initial',
+        '--caret-right': this.data.orientation && this.data.orientation === 'left' ? 'initial' : '-16px',
+        '--caret-rotation': this.data.orientation && this.data.orientation === 'left' ? 'rotate(225deg)': 'rotate(45deg)',
       }
     },
     serializedMessage: function() {
-      if (this.data && this.data.body) {
-        return RichText.asHtml(this.data.body);
+      if (this.data && this.data.message) {
+        return RichText.asHtml(this.data.message);
       }
       return '';
     }
@@ -66,10 +72,12 @@ export default {
     margin-left: 0;
     position: absolute;
     top: calc(1rem + 50px);
-    right: 0;
+    right: var(--img-right);
+    left: var(--img-left);
   }
   .AnnouncementBlock__callout {
-    margin-right: 90px;
+    margin-right: var(--callout-m-right);
+    margin-left: var(--callout-m-left);
   }
   .AnnouncementBlock__callout::after {
     content: "";
@@ -80,8 +88,9 @@ export default {
     border-style: solid;
     border-width: 1px 1px 0 0;
     position: absolute;
-    transform: rotate(45deg);
-    right: -16px;
+    transform: var(--caret-rotation);
+    right: var(--caret-right);
+    left: var(--caret-left);
     top: 38px;
   }
 }
