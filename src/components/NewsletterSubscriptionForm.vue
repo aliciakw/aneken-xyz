@@ -1,5 +1,5 @@
 <template>
-  <div class="NewsletterSubscriptionForm bg-ice-blue mt2 mb1 py1 px1_5 flex flex-col position-relative">
+  <div class="NewsletterSubscriptionForm bg-ice-blue mb1 py1 px1_5 flex flex-col position-relative">
     <h3 class="color-shark-blue-dark mb_5 subheading">
       <strong>{{data.title}}</strong>
     </h3>
@@ -99,6 +99,9 @@ export default {
 </script>
 
 <style>
+.NewsletterSubscriptionForm {
+  margin-top: 3rem;
+}
 .NewsletterSubscriptionForm__pointer-img {
   width: 5.5rem;
   top: -3.5em;
