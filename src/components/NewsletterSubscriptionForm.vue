@@ -1,7 +1,12 @@
 <template>
-  <div class="NewsletterSubscriptionForm bg-ice-blue py1 px1_5 flex flex-col">
+  <div class="NewsletterSubscriptionForm bg-ice-blue mt2 mb1 py1 px1_5 flex flex-col position-relative">
     <h3 class="color-shark-blue-dark mb_5 subheading">
-      <strong>{{data.title}}</strong></h3>
+      <strong>{{data.title}}</strong>
+    </h3>
+    <img
+      class="NewsletterSubscriptionForm__pointer-img position-absolute"
+      src="https://images.prismic.io/aneken-xyz/0e011061-a40b-46b9-a68c-9bf8591361f3_pointer.gif?auto=compress,format"
+    />
     <div
       v-if="serializedMessage"
       v-html="serializedMessage"
@@ -92,3 +97,19 @@ export default {
   }
 }
 </script>
+
+<style>
+.NewsletterSubscriptionForm__pointer-img {
+  width: 5.5rem;
+  top: -3.5em;
+  right: 1rem;
+  z-index: 5;
+}
+
+@media screen and (min-width: 500px) {
+  .NewsletterSubscriptionForm__pointer-img {
+    top: -2.25em;
+    right: 1.5rem;
+  }
+}
+</style>

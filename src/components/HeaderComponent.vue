@@ -104,11 +104,4 @@ export default {
 .HeaderComponent__link:hover, .HeaderComponent__link:active, .HeaderComponent__link:focus {
   text-decoration: none;
 }
-/* .HeaderComponent__svg--text {
-  transition: fill 0.1s ease-in-out, stroke-width 0.1s ease-in-out;
-}
-.HeaderComponent__link:hover .HeaderComponent__svg--text {
-  fill: none;
-  stroke-width: 2px;
-} */
 </style>
