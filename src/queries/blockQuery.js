@@ -1,4 +1,12 @@
 const blockFields = `
+...on announcement_block {
+  icon_image
+  message
+  orientation
+  published_at
+  title
+}
+
 ...on bandcamp_block {
   album_art
   album_url
@@ -41,9 +49,7 @@ const blockFields = `
   background_image
   border_color
   heading_color
-  icon_image
   text_color
-  variant
 }
 ...on video_block {
   video_url

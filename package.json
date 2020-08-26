@@ -13,6 +13,7 @@
     "aws-sdk": "^2.738.0",
     "core-js": "^3.4.4",
     "dotenv": "^8.2.0",
+    "luxon": "^1.25.0",
     "prismic-dom": "^2.1.0",
     "prismic-javascript": "^1.5.1",
     "prismic-vue": "^2.0.0",

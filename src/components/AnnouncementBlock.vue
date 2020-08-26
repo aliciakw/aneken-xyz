@@ -1,17 +1,25 @@
 <template>
   <div class="AnnouncementBlock position-relative flex flex-col align-end py1" :style="cssVars">
-    <div 
-      v-html="serializedMessage" 
-      class="AnnouncementBlock__callout v-html position-relative bg-black border-burnt-orange pt1_5 px1_5 pb1"
-    />
-    <div v-if="data.icon_image" class="AnnouncementBlock__image mxauto bg-burnt-orange-dark border-burnt-orange-dark circle overflow-hidden flex-none">
-      <ImageLoader v-bind:src="data.icon_image.url" v-bind:alt="data.icon_image.alt" />
+    <div class="AnnouncementBlock__callout position-relative border-burnt-orange">
+      <div class="flex flex-row justify-end m_5">
+        <div v-if="data.icon_image" class="AnnouncementBlock__image mrauto bg-burnt-orange-dark border-burnt-orange-dark circle overflow-hidden flex-none">
+          <ImageLoader v-bind:src="data.icon_image.url" v-bind:alt="data.icon_image.alt" />
+        </div>
+        <p v-if="data.published_at" class="detail color-slate">{{formattedDate}}</p>
+        <a class="AnnouncementBlock__like-button px_5" v-on:click="toggleLiked">
+          <img v-if="liked" height="14" src="img/heart--filled.svg"/>
+          <img v-else height="14" src="img/heart.svg"/>
+        </a>
+      </div>
+      <div v-html="serializedMessage" class="v-html m1" />
     </div>
   </div>
 </template>
 <script>
+import { DateTime } from 'luxon';
 import { RichText } from 'prismic-dom';
 import ImageLoader from '../containers/ImageLoader';
+
 export default {
   name: 'AnnouncementBlock',
   components: {
@@ -19,26 +27,51 @@ export default {
   },
   props: {
     data: {
-      body: Array,
-      background_color: String,
-      heading_color: String,
       icon_image: {
         url: String,
         alt: String,
       },
-      text_color: String,
-      variant: String,
+      message: Array,
+      orientation: String,
+      published_at: Date,
     },
+  },
+  data() {
+    return {
+      liked: false,
+    };
+  },
+  methods: {
+    toggleLiked() {
+      this.liked = !this.liked;
+    }
   },
   computed: {
     cssVars() {
       return {
+        '--img-left': this.data.orientation && this.data.orientation === 'left' ? '-90px' : 'initial',
+        '--img-right': this.data.orientation && this.data.orientation === 'left' ? 'initial' : '-90px',
         '--img-url': `url('${this.data.icon_image.url}')`,
+        '--callout-m-left': this.data.orientation && this.data.orientation === 'left' ? '90px' : 0,
+        '--callout-m-right': this.data.orientation && this.data.orientation === 'left' ? 0 : '90px',
+        '--caret-left': this.data.orientation && this.data.orientation === 'left' ? '-16px' : 'initial',
+        '--caret-right': this.data.orientation && this.data.orientation === 'left' ? 'initial' : '-16px',
+        '--caret-rotation': this.data.orientation && this.data.orientation === 'left' ? 'rotate(225deg)': 'rotate(45deg)',
       }
     },
+    formattedDate() {
+      if (this.data.published_at) {
+        try {
+          return DateTime.fromISO(this.data.published_at).toLocaleString(DateTime.DATETIME_SHORT);
+        } catch {
+          return 'INVALID DATE';
+        }
+      }
+      return '';
+    },
     serializedMessage: function() {
-      if (this.data && this.data.body) {
-        return RichText.asHtml(this.data.body);
+      if (this.data && this.data.message) {
+        return RichText.asHtml(this.data.message);
       }
       return '';
     }
@@ -50,11 +83,17 @@ export default {
   width: 50px;
   height: 50px;
   border-width: 2px;
-  margin-top: -25px;
   z-index: 2;
 }
 .AnnouncementBlock__callout a {
   color: #be612e;
+}
+
+.AnnouncementBlock__like-button {
+  margin-left: 0.25rem;
+}
+.AnnouncementBlock__like-button img {
+  margin-top: 1px;
 }
 
 @media screen and (min-width: 770px) {
@@ -65,11 +104,13 @@ export default {
   .AnnouncementBlock__image {
     margin-left: 0;
     position: absolute;
-    top: calc(1rem + 50px);
-    right: 0;
+    top: calc(1rem + 10px);
+    right: var(--img-right);
+    left: var(--img-left);
   }
   .AnnouncementBlock__callout {
-    margin-right: 90px;
+    margin-right: var(--callout-m-right);
+    margin-left: var(--callout-m-left);
   }
   .AnnouncementBlock__callout::after {
     content: "";
@@ -80,8 +121,9 @@ export default {
     border-style: solid;
     border-width: 1px 1px 0 0;
     position: absolute;
-    transform: rotate(45deg);
-    right: -16px;
+    transform: var(--caret-rotation);
+    right: var(--caret-right);
+    left: var(--caret-left);
     top: 38px;
   }
 }
