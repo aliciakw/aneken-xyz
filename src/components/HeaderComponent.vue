@@ -1,14 +1,7 @@
 <template>
   <div class="HeaderComponent flex flex-row justify-center pb_5">
     <a href="/" v-on:mouseover="onStartAnimation" class="HeaderComponent__link mt1 mb_5">
-      <h1 class="subtitle press-start-2p mx_5 color-ice-blue">Aneken River</h1>
-      <svg viewBox="0 0 451.25 40" xmlns="http://www.w3.org/2000/svg">
-        <g stroke="#bcd1e7" stroke-linecap="round" fill="none" stroke-width="2px">
-          <path id="wave-path-1" d="M10,50 L50,140 L90,90"></path>
-          <path id="wave-path-2" d="M10,90 L50,180 L90,130"></path>
-          <path id="wave-path-3" d="M10,50 L50,140 L90,150"></path>
-        </g>
-      </svg>
+      <h1 class="subtitle rock-salt mx_5 color-ice-blue">Aneken River</h1>
     </a>
     <button
       v-if="!isShowingNav || $mq === 'tablet' || $mq === 'laptop' || $mq === 'desktop' "
