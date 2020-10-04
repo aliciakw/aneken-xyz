@@ -1,6 +1,6 @@
 <template>
   <div class="AnnouncementBlock position-relative flex flex-col align-end py1" :style="cssVars">
-    <div class="AnnouncementBlock__callout position-relative border-burnt-orange">
+    <div class="AnnouncementBlock__callout bg-black position-relative border-burnt-orange">
       <div class="flex flex-row justify-end m_5">
         <div v-if="data.icon_image" class="AnnouncementBlock__image mrauto bg-burnt-orange-dark border-burnt-orange-dark circle overflow-hidden flex-none">
           <ImageLoader v-bind:src="data.icon_image.url" v-bind:alt="data.icon_image.alt" />
@@ -54,9 +54,11 @@ export default {
         '--img-url': `url('${this.data.icon_image.url}')`,
         '--callout-m-left': this.data.orientation && this.data.orientation === 'left' ? '90px' : 0,
         '--callout-m-right': this.data.orientation && this.data.orientation === 'left' ? 0 : '90px',
-        '--caret-left': this.data.orientation && this.data.orientation === 'left' ? '-16px' : 'initial',
-        '--caret-right': this.data.orientation && this.data.orientation === 'left' ? 'initial' : '-16px',
-        '--caret-rotation': this.data.orientation && this.data.orientation === 'left' ? 'rotate(225deg)': 'rotate(45deg)',
+        '--caret-left': this.data.orientation && this.data.orientation === 'left' ? '-18px' : 'initial',
+        '--caret-right': this.data.orientation && this.data.orientation === 'left' ? 'initial' : '-18px',
+        '--caret-before-left': this.data.orientation && this.data.orientation === 'left' ? '-20px' : 'initial',
+        '--caret-before-right': this.data.orientation && this.data.orientation === 'left' ? 'initial' : '-20px',
+        '--caret-rotation': this.data.orientation && this.data.orientation === 'left' ? 'rotate(0)': 'rotate(180deg)',
       }
     },
     formattedDate() {
@@ -114,17 +116,29 @@ export default {
   }
   .AnnouncementBlock__callout::after {
     content: "";
-    width: 30px;
-    height: 30px;
-    background-color: #131921;
-    border-color: #f5ab82;
-    border-style: solid;
-    border-width: 1px 1px 0 0;
+    width: 0;
+    height: 0;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-right:18px solid #131921;
     position: absolute;
     transform: var(--caret-rotation);
     right: var(--caret-right);
     left: var(--caret-left);
     top: 38px;
+  }
+  .AnnouncementBlock__callout::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right:20px solid #f5ab82;
+    position: absolute;
+    transform: var(--caret-rotation);
+    right: var(--caret-before-right);
+    left: var(--caret-before-left);
+    top: 36px;
   }
 }
 

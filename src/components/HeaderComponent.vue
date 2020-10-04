@@ -1,7 +1,7 @@
 <template>
-  <div class="HeaderComponent flex flex-row justify-center pb_5">
-    <a href="/" class="HeaderComponent__link mt1 mb_5">
-      <h1 class="subtitle rock-salt mx_5 color-ice-blue">Aneken River</h1>
+  <div class="HeaderComponent flex flex-row justify-center pb1">
+    <a href="/" class="HeaderComponent__link mb_5">
+      <h1 class="title rock-salt mx_5 color-ice-blue">Aneken River</h1>
     </a>
     <button
       v-if="!isShowingNav || $mq === 'tablet' || $mq === 'laptop' || $mq === 'desktop' "
