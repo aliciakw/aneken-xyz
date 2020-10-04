@@ -1,6 +1,6 @@
 <template>
   <div class="HeaderComponent flex flex-row justify-center pb_5">
-    <a href="/" v-on:mouseover="onStartAnimation" class="HeaderComponent__link mt1 mb_5">
+    <a href="/" class="HeaderComponent__link mt1 mb_5">
       <h1 class="subtitle rock-salt mx_5 color-ice-blue">Aneken River</h1>
     </a>
     <button
@@ -18,63 +18,6 @@ export default {
     isShowingNav: Boolean,
     toggleNav: Function,
   },
-  mounted() {
-    this.onStartAnimation();
-  },
-  data() {
-    return {
-      isAnimating: false,
-    }
-  },
-  methods: {
-    _getIsAnimating() {
-      return this.isAnimating;
-    },
-    _setIsAnimating(value) {
-      this.isAnimating = value;
-    },
-    onStartAnimation() {
-      this.animateWaves(this._getIsAnimating.bind(this), this._setIsAnimating.bind(this));
-    },
-    animateWaves(getIsAnimating, setIsAnimating) {
-      const xOffset = 2;
-      const wavePeriod = 7;
-      const yOffset = 12;
-      const amplitude = 5;
-      const waveSpacing = 9;
-      const animationSpeed = 0.9;
-      const numberOfFrames = 60;
-
-      if (getIsAnimating()) return;
-      setIsAnimating(true);
-      let xs = [];
-      for (var i = xOffset; i <= 445; i++) {
-        xs.push(i);
-      }
-      let t = 0;
-
-      function animate() {
-        const points = xs.map(x => {
-          let y = yOffset + amplitude * Math.sin((x + t) / wavePeriod)
-          return [x, y]
-        });
-        const path1 = "M" + points.map(p => p[0] + "," + p[1]).join(" L");
-        const path2 = "M" + points.map(p => p[0] + "," + (p[1] + waveSpacing)).join(" L");
-        const path3 = "M" + points.map(p => p[0] + "," + (p[1] + 2 * waveSpacing)).join(" L");
-        document.getElementById("wave-path-1").setAttribute("d", path1);
-        document.getElementById("wave-path-2").setAttribute("d", path2);
-        document.getElementById("wave-path-3").setAttribute("d", path3);
-        t += animationSpeed;
-        if (t < numberOfFrames) {
-          requestAnimationFrame(animate)
-        } else {
-          setIsAnimating(false);
-        }
-      }
-
-      animate()
-    }
-  }
 }
 </script>
 <style>
