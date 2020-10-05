@@ -10,7 +10,8 @@ a:hover, a:focus, a:active {
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  line-height: 4.5rem;
 }
 .heading {
   font-size: 1.5rem;

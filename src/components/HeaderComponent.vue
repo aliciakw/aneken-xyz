@@ -1,5 +1,5 @@
 <template>
-  <div class="HeaderComponent flex flex-row justify-center pb1">
+  <div class="HeaderComponent flex flex-row md-justify-center">
     <a href="/" class="HeaderComponent__link mb_5">
       <h1 class="title rock-salt mx_5 color-ice-blue">Aneken River</h1>
     </a>

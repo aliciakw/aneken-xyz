@@ -2,9 +2,9 @@
   <div id="app" class="App bg-black flex flex-row justify-between" :style="cssVars">
     <!-- Main content -->
     <div class="App__body vw100">
-      <div class="App__container mxauto px1_5">
+      <div class="App__container mxauto flex flex-col px1">
         <HeaderComponent v-bind:toggleNav="toggleNav" v-bind:isShowingNav="isShowingNav" />
-        <GentleLoader v-bind:preloadContent="fetchBlockList" >
+        <GentleLoader class="flex flex-col" v-bind:preloadContent="fetchBlockList" >
           <h1 v-if="title && displayPageTitle" class="mb1">{{ title }}</h1>
           <BlockSwitch v-if="blockLinks && blockLinks.length" v-bind:blockLinks="blockLinks" />
           <p v-else-if="blockLinks">...coming soon!</p>
