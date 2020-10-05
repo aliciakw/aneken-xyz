@@ -22,9 +22,11 @@
 .justify-end { justify-content: flex-end; }
 .justify-between { justify-content: space-between; }
 .justify-even { justify-content: space-evenly; }
+.justify-stretch { justify-content: stretch; }
 .align-start { align-items: flex-start; }
 .align-center { align-items: center; }
 .align-end { align-items: flex-end; }
+.align-stretch { align-items: stretch; }
 .self-justify-center { justify-self: center; }
 .self-justify-end { justify-self: end; }
 @media screen and (min-width: 770px) {
@@ -40,9 +42,11 @@
   .md-justify-end { justify-content: flex-end; }
   .md-justify-between { justify-content: space-between; }
   .md-justify-even { justify-content: space-evenly; }
+  .md-justify-stretch { justify-content: stretch; }
   .md-align-start { align-items: flex-start; }
   .md-align-center { align-items: center; }
   .md-align-end { align-items: flex-end; }
+  .md-align-stretch { align-items: stretch; }
   .md-self-justify-center { justify-self: center; }
   .md-self-justify-end { justify-self: end; }
 }
@@ -232,3 +236,7 @@ $breakpoints: (
   'xl': 1450px // large desktop
 ) !default;
 */
+
+.debug {
+  border: 1px dotted pink;
+}

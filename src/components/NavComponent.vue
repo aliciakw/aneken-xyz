@@ -13,7 +13,7 @@
         v-for="item in keyedMenuItems"
         v-bind:key="item.key"
         v-bind:href="item.url"
-        class="color-black heading press-start-2p w100 text-center my1 py1"
+        class="color-black heading rock-salt w100 text-center my1 py1"
       >
         {{item.label}}
       </a>

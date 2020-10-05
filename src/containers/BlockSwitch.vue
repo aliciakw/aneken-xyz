@@ -1,6 +1,6 @@
 <template>
-  <div class="BlockSwitch flex flex-col h100" :style="cssVars">
-    <div v-for="link in blockLinks" v-bind:key="link.block.id">
+  <div class="BlockSwitch flex flex-col flex-1 items-stretch" :style="cssVars">
+    <div class="flex flex-col flex-1" v-for="link in blockLinks" v-bind:key="link.block.id">
       <LayoutSwitch v-if="link.block.type === 'layout_block'" v-bind:data="link.block.data" />
       <AnnouncementBlock v-else-if="link.block.type === 'announcement_block'" v-bind:data="link.block.data" />
       <BandcampBlock v-else-if="link.block.type === 'bandcamp_block'" v-bind:data="link.block.data" />
@@ -46,7 +46,7 @@ export default {
   computed: {
     cssVars() {
       return {
-        '--align-items': this.justify || 'flex-start',
+        '--align-items': this.justify || 'stretch',
         '--justify-content': this.align || 'flex-start',
       }
     }

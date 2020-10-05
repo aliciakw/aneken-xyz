@@ -1,5 +1,5 @@
 <template>
-  <div class="LayoutBlock flex flex-1">
+  <div class="LayoutBlock flex flex-col align-center flex-1">
     <ThreeColumnLayout v-if="data.layout_type === '1:1:1'" v-bind:data="data" />
     <TwoColumnLayout v-else-if="data.layout_type === '1:1'" v-bind:data="data" />
     <p v-else class="detail color-gray">
